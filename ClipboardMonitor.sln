@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{AB148BEA-84A8-4FF2-ABD7-F7B28FAE4DFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cmon", "apps\cmon\cmon.csproj", "{F40485BF-66D3-4067-A9D8-37AA094778D7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5EFC7FD-90AA-45F9-9C71-064CFE42E8BE} = {A5EFC7FD-90AA-45F9-9C71-064CFE42E8BE}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmon.engine", "libs\cmon.engine\cmon.engine.vcxproj", "{A5EFC7FD-90AA-45F9-9C71-064CFE42E8BE}"
 EndProject

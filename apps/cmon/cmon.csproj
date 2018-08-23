@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\cmon.engine\cmon.engine.vcxproj">
+      <Project>{a5efc7fd-90aa-45f9-9c71-064cfe42e8be}</Project>
+      <Name>cmon.engine</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
