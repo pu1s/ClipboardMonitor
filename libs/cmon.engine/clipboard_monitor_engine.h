@@ -26,28 +26,19 @@ SOFTWARE.
 
 #include <Windows.h>
 
-typedef enum c_monitor_state
+namespace std
 {
-	unknown = 0,	 // nd
-	stopped = 1,	 // остановлен
-	running = 2		 // работает
-}C_MONITOR_STATE;
+	class clipboard_monitor
+	{
+	public:
+		clipboard_monitor();
+		~clipboard_monitor();
 
-class c_monitor
-{
-public:
-	c_monitor();
-	~c_monitor();
+	private:
 
-	C_MONITOR_STATE get_c_monitor_state(void) const;
-	C_MONITOR_STATE run(void);
-	C_MONITOR_STATE stop(void);
+	};
 
-private:
-
-	C_MONITOR_STATE m_c_monitor_state = C_MONITOR_STATE::unknown;
-	HWND p_next_clipboard_wiever = nullptr;
 	
-};
+}
 
 
