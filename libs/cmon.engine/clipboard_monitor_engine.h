@@ -36,6 +36,7 @@ namespace std
 		HWND get_next_clipboard_wiever(void) noexcept;
 		HWND get_monitor_window(void) noexcept;
 
+
 	private:
 		HWND p_next_clipboard_wiever = nullptr;
 		HWND p_monitor_clipboard_wiever = nullptr;
