@@ -33,9 +33,14 @@ namespace std
 	public:
 		clipboard_monitor();
 		~clipboard_monitor();
+		HWND get_next_clipboard_wiever(void) noexcept;
+		HWND get_monitor_window(void) noexcept;
 
 	private:
-
+		HWND p_next_clipboard_wiever = nullptr;
+		HWND p_monitor_clipboard_wiever = nullptr;
+		bool create_monitor_window() noexcept;
+		void clipboard_update() noexcept;
 	};
 
 	
