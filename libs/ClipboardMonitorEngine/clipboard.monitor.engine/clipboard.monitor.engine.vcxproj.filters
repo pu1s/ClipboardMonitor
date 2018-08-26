@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cmon.engine.h">
+    <ClInclude Include="clipboard.monitor.engine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -24,12 +24,9 @@
     <ClInclude Include="Resource.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="clipboard_monitor_engine.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cmon.engine.cpp">
+    <ClCompile Include="clipboard.monitor.engine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
