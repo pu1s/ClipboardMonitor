@@ -7,28 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClipboardMonitorEngine;
+using pulsoft;
 
 namespace ClipboardMonitor
 {
     public partial class Form1 : Form
     {
-        private ClipboardMonitorEngine.ClipboardMonitor cm;
-        
+
+        ClipboardMonitorWindow cmw;
         public Form1()
         {
             InitializeComponent();
             
         }
 
-        
-
         private void button1_Click(object sender, EventArgs e)
         {
-
-            cm = new ClipboardMonitorEngine.ClipboardMonitor();
-            //cm.OnMonitorCreated += Cm_OnMonitorCreated;
-            cm.Run();
+            cmw = new ClipboardMonitorWindow();
+           
+            //cmw.Show();
         }
     }
 }
