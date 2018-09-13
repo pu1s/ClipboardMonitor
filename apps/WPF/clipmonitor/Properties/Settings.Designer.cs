@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace cmon.Properties
+namespace clipmonitor.Properties
 {
 
 

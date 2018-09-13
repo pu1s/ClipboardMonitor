@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F40485BF-66D3-4067-A9D8-37AA094778D7}</ProjectGuid>
+    <ProjectGuid>{2F75F1DD-496B-47B7-ABFD-A72E42DE6A0B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>cmon</RootNamespace>
-    <AssemblyName>cmon</AssemblyName>
+    <RootNamespace>clipmonitor</RootNamespace>
+    <AssemblyName>clipmonitor</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -19,7 +19,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -94,6 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libs\ClipboardMonitorEngine\clipboard.monitor.engine\clipboard.monitor.engine.vcxproj">
+      <Project>{250340d5-e743-412d-bf4d-d70b2f48ae08}</Project>
+      <Name>clipboard.monitor.engine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
