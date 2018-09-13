@@ -14,7 +14,7 @@ namespace ClipboardMonitor
     public partial class Form1 : Form
     {
 
-        ClipboardMonitorWindow cmw;
+        pulsoft.ClipboardMonitor cmw;
         public Form1()
         {
             InitializeComponent();
@@ -23,8 +23,8 @@ namespace ClipboardMonitor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cmw = new ClipboardMonitorWindow();
-           
+            cmw = new pulsoft.ClipboardMonitor();
+            button1.Text = cmw.MonitorHandle.ToString();
             //cmw.Show();
         }
     }
