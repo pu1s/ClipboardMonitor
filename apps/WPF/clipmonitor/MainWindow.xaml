@@ -6,7 +6,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btn1" Content="Button" HorizontalAlignment="Left" Margin="115,131,0,0" VerticalAlignment="Top" Width="570" Height="148" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="602*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btn1" Content="Button" Margin="10,10,0,0" VerticalAlignment="Top" Height="399" Click="Button_Click" Grid.Column="1" HorizontalAlignment="Left" Width="711"/>
 
     </Grid>
 </Window>
