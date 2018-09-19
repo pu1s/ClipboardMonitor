@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace cmon
+namespace clipmonitor
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -26,12 +26,13 @@ namespace cmon
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+          pulsoft.ClipboardMonitor cm = new pulsoft.ClipboardMonitor();
+          cm.Create();
+        btn1.Content = cm.MonitorHandle.ToString() + cm.NextClipboardViewer.ToString();
         }
     }
 }
