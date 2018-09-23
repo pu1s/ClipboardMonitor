@@ -32,7 +32,7 @@ namespace clipmonitor
         {
           pulsoft.ClipboardMonitor cm = new pulsoft.ClipboardMonitor();
           cm.Create();
-        btn1.Content = cm.MonitorHandle.ToString() + cm.NextClipboardViewer.ToString();
+        btn1.Content = cm.MonitorHandle.ToString() + "//" + cm.NextClipboardViewer.ToString();
         }
     }
 }
