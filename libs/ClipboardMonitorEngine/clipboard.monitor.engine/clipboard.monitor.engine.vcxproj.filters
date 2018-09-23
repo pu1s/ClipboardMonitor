@@ -27,6 +27,12 @@
     <ClInclude Include="clipboard.monitor.content.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="ClipboardMonitorWindow.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipboardMonitorWindowState.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="clipboard.monitor.engine.cpp">
@@ -39,6 +45,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="clipboard.monitor.content.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipboardMonitorWindow.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
