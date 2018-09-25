@@ -128,13 +128,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="clipboard.monitor.engine.h" />
+    <ClInclude Include="ClipboardMonitor.h" />
+    <ClInclude Include="ClipboardMonitorForm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="clipboard.monitor.engine.cpp" />
+    <ClCompile Include="ClipboardMonitor.cpp" />
+    <ClCompile Include="ClipboardMonitorForm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -30,9 +30,7 @@ namespace clipmonitor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          pulsoft.ClipboardMonitor cm = new pulsoft.ClipboardMonitor();
-          cm.Create();
-        btn1.Content = cm.MonitorHandle.ToString() + cm.NextClipboardViewer.ToString();
+          
         }
     }
 }
