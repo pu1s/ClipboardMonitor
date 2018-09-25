@@ -8,21 +8,29 @@ namespace pu1soft
 	{
 	private:
 		HWND p_next_clipboard_viewer;
-		ClipboardMonitorForm ^ _monitorForm;
+		ClipboardMonitorForm ^ p_monitorFormInstance;
 	public:
 		ClipboardMonitor();
 		property System::IntPtr ClipboardMonitorFormHandle
 		{
 			System::IntPtr get()
 			{
-				if (_monitorForm != nullptr)
+				if (p_monitorFormInstance != nullptr)
 				{
-					return _monitorForm->Handle;
+					return p_monitorFormInstance->Handle;
 				}
 				else
 				{
 					return System::IntPtr::Zero;
 				}
+			}
+		}
+
+		property System::IntPtr NextClipboardViewerHandle
+		{
+			System::IntPtr get()
+			{
+				return System::IntPtr(p_next_clipboard_viewer);
 			}
 		}
 	};
