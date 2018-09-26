@@ -2,13 +2,21 @@
 
 #include "ClipboardMonitorForm.h"
 
+#define __managed_handle System::IntPtr
+#define __unmanaged_handle HWND
+#define __monitor_form ClipboardMonitorForm ^
+#define __boolean bool
 namespace pu1soft
 {
 	public ref class ClipboardMonitor
 	{
 	private:
-		HWND p_next_clipboard_viewer;
-		ClipboardMonitorForm ^ p_monitorFormInstance;
+		__unmanaged_handle	p_next_clipboard_viewer;
+		__unmanaged_handle	p_clipboard_viewer;
+		__managed_handle	_nextClipboardViewer;
+		__managed_handle	_clipboardViewer;
+		__monitor_form		_clipboardViewerWindow;
+		__boolean			_is_enabled;
 	public:
 		// Public ctors
 		ClipboardMonitor();
@@ -18,28 +26,15 @@ namespace pu1soft
 		!ClipboardMonitor();
 
 		//Public properties
-		property System::IntPtr ClipboardMonitorFormHandle
-		{
-			System::IntPtr get()
-			{
-				if (p_monitorFormInstance->Handle != System::IntPtr::Zero)
-				{
-					return p_monitorFormInstance->Handle;
-				}
-				else
-				{
-					return System::IntPtr::Zero;
-				}
-			}
-		}
+		
+		event System::EventHandler<System::EventArgs^>^ MonitorEnabled;
+		event System::EventHandler<System::EventArgs^>^ MonitorDisabled;
 
-		property System::IntPtr NextClipboardViewerHandle
-		{
-			System::IntPtr get()
-			{
-				return System::IntPtr(p_next_clipboard_viewer);
-			}
-		}
+		//
+		void Start();
+
+	protected:
+
 	};
 }
 

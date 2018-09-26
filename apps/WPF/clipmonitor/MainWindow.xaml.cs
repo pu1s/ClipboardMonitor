@@ -32,7 +32,10 @@ namespace clipmonitor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             pu1soft.ClipboardMonitor clipboardMonitor = new ClipboardMonitor();
-            btn1.Content = clipboardMonitor.ClipboardMonitorFormHandle.ToString();
+            btn1.Content = clipboardMonitor.ToString();
+            
         }
+
+        
     }
 }
