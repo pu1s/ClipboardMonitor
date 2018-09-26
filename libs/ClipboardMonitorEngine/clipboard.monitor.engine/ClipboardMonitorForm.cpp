@@ -3,20 +3,12 @@
 
 
 
-pu1soft::ClipboardMonitorForm::ClipboardMonitorForm()
+pu1soft::ClipboardMonitorForm::ClipboardMonitorForm() 
 {
 	
 }
 
-pu1soft::ClipboardMonitorForm::~ClipboardMonitorForm()
-{
-	this->!ClipboardMonitorForm();
-}
 
-pu1soft::ClipboardMonitorForm::!ClipboardMonitorForm()
-{
-	
-}
 
 void pu1soft::ClipboardMonitorForm::WndProc(System::Windows::Forms::Message % msg)
 {

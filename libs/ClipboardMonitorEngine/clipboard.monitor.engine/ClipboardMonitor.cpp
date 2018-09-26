@@ -5,3 +5,13 @@ pu1soft::ClipboardMonitor::ClipboardMonitor()
 {
 	p_monitorFormInstance = gcnew pu1soft::ClipboardMonitorForm();
 }
+
+pu1soft::ClipboardMonitor::~ClipboardMonitor()
+{
+	this->!ClipboardMonitor();
+}
+
+pu1soft::ClipboardMonitor::!ClipboardMonitor()
+{
+	delete p_monitorFormInstance;
+}

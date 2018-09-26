@@ -13,8 +13,6 @@ namespace pu1soft
 	{
 	public:
 		ClipboardMonitorForm();
-		~ClipboardMonitorForm();
-		!ClipboardMonitorForm();
 	protected:
 		void WndProc(System::Windows::Forms::Message % msg) override;
 	};

@@ -10,12 +10,19 @@ namespace pu1soft
 		HWND p_next_clipboard_viewer;
 		ClipboardMonitorForm ^ p_monitorFormInstance;
 	public:
+		// Public ctors
 		ClipboardMonitor();
+		// Public dctors
+		~ClipboardMonitor();
+		 // Finalizer
+		!ClipboardMonitor();
+
+		//Public properties
 		property System::IntPtr ClipboardMonitorFormHandle
 		{
 			System::IntPtr get()
 			{
-				if (p_monitorFormInstance != nullptr)
+				if (p_monitorFormInstance->Handle != System::IntPtr::Zero)
 				{
 					return p_monitorFormInstance->Handle;
 				}
