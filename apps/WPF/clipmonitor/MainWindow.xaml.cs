@@ -32,8 +32,8 @@ namespace clipmonitor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             pu1soft.ClipboardViewer clipboardMonitor = new ClipboardViewer();
-            btn1.Content = clipboardMonitor.ToString();
-            clipboardMonitor.Start();
+            //btn1.Content = clipboardMonitor.ToString();
+            //clipboardMonitor.Start();
         }
 
         

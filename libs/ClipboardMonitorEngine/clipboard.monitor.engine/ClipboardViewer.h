@@ -1,29 +1,30 @@
 #pragma once
+#include <Windows.h>
+#include <WinUser.h>
 
-#include "ClipboardViewerForm.h"
+#using <System.dll>
+#using <System.Windows.Forms.dll>
+
 
 #define __managed_handle	System::IntPtr
 #define __unmanaged_handle	HWND
-#define __viewer_form		ClipboardViewerForm
+
 
 namespace pu1soft
 {
-	public ref class ClipboardViewer
+	public ref class ClipboardViewer : public System::Windows::Forms::Form
 	{
 	private:
 		__unmanaged_handle	_next_clipboard_viewer;
 		__unmanaged_handle	_clipboard_viewer;
 		__managed_handle	_nextClipboardViewer;
 		__managed_handle	_clipboardViewer;
-		__viewer_form^		_clipboardViewerWindow;
 		bool				_is_enabled;
 
 		// Private functions
 		__unmanaged_handle	_get_unmanaged_handle(System::IntPtr handle);
 		__managed_handle	_get_managed_handle(HWND hWnd);
-		bool				_start_viewer();
-		bool				_stop_viewer();
-		void				_update_viewer();
+		
 	public:
 		// Public ctors
 		ClipboardViewer();
@@ -41,7 +42,7 @@ namespace pu1soft
 		void Start();
 
 	protected:
-
+		void WndProc(System::Windows::Forms::Message % message) override;
 	};
 }
 
