@@ -1,8 +1,12 @@
 #pragma once
-public enum ClipboardMonitorWindowState
+namespace pu1soft
 {
+	public enum ClipboardMonitorWindowState
+	{
 
-};
+	};
+}
+
 
 
 
