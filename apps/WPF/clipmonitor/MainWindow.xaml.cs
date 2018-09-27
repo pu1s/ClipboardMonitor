@@ -33,7 +33,7 @@ namespace clipmonitor
         {
             pu1soft.ClipboardViewer clipboardMonitor = new ClipboardViewer();
             btn1.Content = clipboardMonitor.ToString();
-            
+            clipboardMonitor.Start();
         }
 
         

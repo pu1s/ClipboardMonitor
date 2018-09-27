@@ -4,7 +4,7 @@
 
 #define __managed_handle	System::IntPtr
 #define __unmanaged_handle	HWND
-#define __viewer_form		ClipboardViewerForm ^
+#define __viewer_form		ClipboardViewerForm
 
 namespace pu1soft
 {
@@ -15,12 +15,15 @@ namespace pu1soft
 		__unmanaged_handle	_clipboard_viewer;
 		__managed_handle	_nextClipboardViewer;
 		__managed_handle	_clipboardViewer;
-		__viewer_form		_clipboardViewerWindow;
+		__viewer_form^		_clipboardViewerWindow;
 		bool				_is_enabled;
 
 		// Private functions
 		__unmanaged_handle	_get_unmanaged_handle(System::IntPtr handle);
 		__managed_handle	_get_managed_handle(HWND hWnd);
+		bool				_start_viewer();
+		bool				_stop_viewer();
+		void				_update_viewer();
 	public:
 		// Public ctors
 		ClipboardViewer();
