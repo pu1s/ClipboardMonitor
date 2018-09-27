@@ -31,8 +31,8 @@ MAN_HWND pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
 
 pu1soft::ClipboardViewer::ClipboardViewer()
 {
-	
-	
+	_last_error_code = 0;
+	_is_enabled = false;
 }
 
 
@@ -46,10 +46,26 @@ void pu1soft::ClipboardViewer::Start()
 	
 }
 
-void pu1soft::ClipboardViewer::WndProc(System::Windows::Forms::Message % message)
+void pu1soft::ClipboardViewer::WndProc(MAN_MSG % message)
 {
 	switch (message.Msg)
 	{
+	case WM_CREATE:
+		if (_next_clipboard_viewer = SetClipboardViewer(_get_unmanaged_handle(this->ClipboardViewerHandle)))
+		{
+			_nextClipboardViewer = _get_managed_handle(_next_clipboard_viewer);
+		}
+		else
+		{
+			_last_error_code = GetLastError();
+		}
+		break;
+	case WM_CHANGECBCHAIN:
+		break;
+	case WM_DESTROY:
+		break;
+	case WM_PAINTCLIPBOARD:
+		break;
 	default:
 		DefWndProc(message);
 		break;
