@@ -6,8 +6,8 @@
 #using <System.Windows.Forms.dll>
 
 
-#define __managed_handle	System::IntPtr
-#define __unmanaged_handle	HWND
+#define MAN_HWND	System::IntPtr
+#define NAT_HWND	HWND
 
 
 namespace pu1soft
@@ -15,15 +15,15 @@ namespace pu1soft
 	public ref class ClipboardViewer : public System::Windows::Forms::Form
 	{
 	private:
-		__unmanaged_handle	_next_clipboard_viewer;
-		__unmanaged_handle	_clipboard_viewer;
-		__managed_handle	_nextClipboardViewer;
-		__managed_handle	_clipboardViewer;
-		bool				_is_enabled;
+		NAT_HWND	_next_clipboard_viewer;
+		NAT_HWND	_clipboard_viewer;
+		MAN_HWND	_nextClipboardViewer;
+		MAN_HWND	_clipboardViewer;
+		bool		_is_enabled;
 
 		// Private functions
-		__unmanaged_handle	_get_unmanaged_handle(System::IntPtr handle);
-		__managed_handle	_get_managed_handle(HWND hWnd);
+		NAT_HWND	_get_unmanaged_handle(System::IntPtr handle);
+		MAN_HWND	_get_managed_handle(HWND hWnd);
 		
 	public:
 		// Public ctors

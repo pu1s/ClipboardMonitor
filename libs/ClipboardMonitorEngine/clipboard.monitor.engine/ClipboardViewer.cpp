@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ClipboardViewer.h"
 
-__unmanaged_handle pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPtr handle)
+NAT_HWND pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPtr handle)
 {
 	if (handle == System::IntPtr::Zero)
 	{
@@ -13,7 +13,7 @@ __unmanaged_handle pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPt
 	}
 }
 
-__managed_handle pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
+MAN_HWND pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
 {
 	if (hWnd != nullptr)
 	{
