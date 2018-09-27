@@ -21,10 +21,10 @@
     <ClInclude Include="Resource.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ClipboardMonitor.h">
+    <ClInclude Include="ClipboardViewer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ClipboardMonitorForm.h">
+    <ClInclude Include="ClipboardViewerForm.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,10 +35,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ClipboardMonitor.cpp">
+    <ClCompile Include="ClipboardViewer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ClipboardMonitorForm.cpp">
+    <ClCompile Include="ClipboardViewerForm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

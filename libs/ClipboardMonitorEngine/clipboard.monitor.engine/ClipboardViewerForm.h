@@ -9,10 +9,10 @@
 
 namespace pu1soft
 {
-	public ref class ClipboardMonitorForm : public System::Windows::Forms::Form
+	public ref class ClipboardViewerForm : public System::Windows::Forms::Form
 	{
 	public:
-		ClipboardMonitorForm();
+		ClipboardViewerForm();
 	protected:
 		void WndProc(System::Windows::Forms::Message % msg) override;
 	};
