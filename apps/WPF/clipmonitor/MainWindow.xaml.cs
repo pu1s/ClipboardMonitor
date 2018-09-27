@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using pu1soft;
 
 
 namespace clipmonitor
@@ -30,9 +31,11 @@ namespace clipmonitor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          pulsoft.ClipboardMonitor cm = new pulsoft.ClipboardMonitor();
-          cm.Create();
-        btn1.Content = cm.MonitorHandle.ToString() + "//" + cm.NextClipboardViewer.ToString();
+            pu1soft.ClipboardViewer clipboardMonitor = new ClipboardViewer();
+            btn1.Content = clipboardMonitor.ToString();
+            clipboardMonitor.Start();
         }
+
+        
     }
 }
