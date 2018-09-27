@@ -23,16 +23,17 @@ namespace clipmonitor
     /// </summary>
     public partial class MainWindow : Window
     {
-        
 
+        private pu1soft.ClipboardViewer clipboardMonitor;
         public MainWindow()
         {
             InitializeComponent();
+            clipboardMonitor = new ClipboardViewer();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            pu1soft.ClipboardViewer clipboardMonitor = new ClipboardViewer();
+           
             btn1.Content = clipboardMonitor.ToString() 
                 + " / " 
                 + clipboardMonitor.Handle.ToString()
