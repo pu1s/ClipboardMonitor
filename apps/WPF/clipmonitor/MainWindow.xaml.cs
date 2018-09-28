@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using pu1soft;
 
 
@@ -22,19 +23,27 @@ namespace clipmonitor
     /// </summary>
     public partial class MainWindow : Window
     {
-        
 
+        private pu1soft.ClipboardViewer clipboardMonitor;
         public MainWindow()
         {
             InitializeComponent();
+            clipboardMonitor = new ClipboardViewer();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            pu1soft.ClipboardViewer clipboardMonitor = new ClipboardViewer();
-            clipboardMonitor.Init();
-            btn1.Content = clipboardMonitor.ToString() + " / " + clipboardMonitor.ClipboardViewerHandle + " / " + clipboardMonitor.LastError.ToString();
-            clipboardMonitor.Start();
+           
+            btn1.Content = clipboardMonitor.ToString() 
+                + " / " 
+                + clipboardMonitor.Handle.ToString()
+                + " / "
+                + clipboardMonitor.ClipboardViewerHandle
+                + " / "
+                + clipboardMonitor.NextClipboardViewerHandle
+                + " / "
+                + clipboardMonitor.LastError.ToString();
+            //clipboardMonitor.Start();
         }
 
         

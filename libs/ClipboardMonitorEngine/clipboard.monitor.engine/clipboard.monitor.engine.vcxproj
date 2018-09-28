@@ -129,14 +129,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ClipboardViewer.h" />
-    <ClInclude Include="ClipboardViewerForm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="ClipboardViewer.cpp" />
-    <ClCompile Include="ClipboardViewerForm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

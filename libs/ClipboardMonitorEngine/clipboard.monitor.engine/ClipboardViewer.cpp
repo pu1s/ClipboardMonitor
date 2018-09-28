@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ClipboardViewer.h"
 
-__unmanaged_handle pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPtr handle)
+NAT_HWND pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPtr handle)
 {
 	if (handle == System::IntPtr::Zero)
 	{
@@ -13,7 +13,7 @@ __unmanaged_handle pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPt
 	}
 }
 
-__managed_handle pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
+MAN_HWND pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
 {
 	if (hWnd != nullptr)
 	{
@@ -25,54 +25,51 @@ __managed_handle pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
 	}
 }
 
-bool pu1soft::ClipboardViewer::_start_viewer()
-{
-	if(_clipboard_viewer_handle == nullptr)
-	{
-		return false;
-	}
-	else
-	{
-		if(!(_next_clipboard_viewer_handle = (HWND)SetClipboardViewer(_clipboard_viewer_handle)))
-		{
-			_last_error = GetLastError();
-
-			_nextClipboardViewerHandle = _get_managed_handle(_next_clipboard_viewer_handle);
-		}
-	}	
-
-	return true;
-}
-
-bool pu1soft::ClipboardViewer::_stop_viewer()
-{
-	return ChangeClipboardChain(_clipboard_viewer_handle, _next_clipboard_viewer_handle) ? true : false;
-}
 
 
 
 
 pu1soft::ClipboardViewer::ClipboardViewer()
 {
-	
-}
-
-void pu1soft::ClipboardViewer::Init()
-{
-	_clipboardViewerWindow = gcnew __viewer_form();
-	_clipboardViewerHandle = _clipboardViewerWindow->Handle;
-	_clipboard_viewer_handle = _get_unmanaged_handle(_clipboardViewerHandle);
+	_last_error_code = 0;
+	_is_enabled = false;
 }
 
 
 pu1soft::ClipboardViewer::!ClipboardViewer()
 {
-	delete _clipboardViewerWindow;
+	
 }
 
 void pu1soft::ClipboardViewer::Start()
 {
-	if (_start_viewer()) return;
+	
+}
+
+void pu1soft::ClipboardViewer::WndProc(MAN_MSG % message)
+{
+	switch (message.Msg)
+	{
+	case WM_CREATE:
+		if (_next_clipboard_viewer = SetClipboardViewer(_get_unmanaged_handle(this->ClipboardViewerHandle)))
+		{
+			_nextClipboardViewer = _get_managed_handle(_next_clipboard_viewer);
+		}
+		else
+		{
+			_last_error_code = GetLastError();
+		}
+		break;
+	case WM_CHANGECBCHAIN:
+		break;
+	case WM_DESTROY:
+		break;
+	case WM_PAINTCLIPBOARD:
+		break;
+	default:
+		DefWndProc(message);
+		break;
+	}
 }
 
 pu1soft::ClipboardViewer::~ClipboardViewer()

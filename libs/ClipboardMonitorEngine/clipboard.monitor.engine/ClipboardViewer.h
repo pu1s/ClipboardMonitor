@@ -1,58 +1,66 @@
 #pragma once
+#include <Windows.h>
+#include <WinUser.h>
 
-#include "ClipboardViewerForm.h"
+#using <System.dll>
+#using <System.Windows.Forms.dll>
 
-#define __managed_handle	System::IntPtr
-#define __unmanaged_handle	HWND
-#define __viewer_form		ClipboardViewerForm
+using namespace System;
+
+#define MAN_HWND	System::IntPtr
+#define NAT_HWND	HWND
+#define MAN_MSG		System::Windows::Forms::Message
 
 namespace pu1soft
 {
-	public ref class ClipboardViewer
+	// Clipboard Viewer
+	public ref class ClipboardViewer : public System::Windows::Forms::Form
 	{
 	private:
-		__unmanaged_handle	_next_clipboard_viewer_handle;
-		__unmanaged_handle	_clipboard_viewer_handle;
-		__managed_handle	_nextClipboardViewerHandle;
-		__managed_handle	_clipboardViewerHandle;
-		__viewer_form^		_clipboardViewerWindow;
-		bool				_is_enabled;
-		DWORD				_last_error;
+		NAT_HWND	_next_clipboard_viewer;
+		NAT_HWND	_clipboard_viewer;
+		MAN_HWND	_nextClipboardViewer;
+		MAN_HWND	_clipboardViewer;
+		bool		_is_enabled;
+		DWORD		_last_error_code;
 		// Private functions
-		__unmanaged_handle	_get_unmanaged_handle(System::IntPtr handle);
-		__managed_handle	_get_managed_handle(HWND hWnd);
-		bool				_start_viewer();
-		bool				_stop_viewer();
-	
+		NAT_HWND	_get_unmanaged_handle(System::IntPtr managed_handle);
+		MAN_HWND	_get_managed_handle(HWND unmanageg_handle);
+
 	public:
 		// Public ctors
 		ClipboardViewer();
-		void Init();
 		// Public dctors
 		~ClipboardViewer();
-		 // Finalizer
+		// Finalizer
 		!ClipboardViewer();
 
 		//Public properties
-		property System::IntPtr ClipboardViewerHandle
+
+		// Return next clipboard viewer handle
+		property IntPtr NextClipboardViewerHandle
 		{
-			System::IntPtr get()
+			IntPtr get()
 			{
-				return _clipboardViewerHandle;
+				return _nextClipboardViewer;
 			}
 		}
-		property System::IntPtr NextClipboardViewerHandle
+
+		// Return clipboard viewer handle
+		property IntPtr ClipboardViewerHandle
 		{
-			System::IntPtr get()
+			IntPtr get()
 			{
-				return _nextClipboardViewerHandle;
+				return this->Handle;
 			}
 		}
-		property System::Int32 LastError
+
+		// Return last error code
+		property Int32 LastError
 		{
-			System::Int32 get()
+			Int32 get()
 			{
-				return _last_error;
+				return _last_error_code;
 			}
 		}
 		event System::EventHandler<System::EventArgs^>^ MonitorEnabled;
@@ -62,7 +70,7 @@ namespace pu1soft
 		void Start();
 
 	protected:
-
+		void WndProc(MAN_MSG % message) override;
 	};
 }
 
