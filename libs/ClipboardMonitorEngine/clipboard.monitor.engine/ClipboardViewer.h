@@ -23,6 +23,7 @@ namespace pu1soft
 		MAN_HWND	_clipboardViewer;
 		bool		_is_enabled;
 		DWORD		_last_error_code;
+
 		// Private functions
 		NAT_HWND	_get_unmanaged_handle(System::IntPtr managed_handle);
 		MAN_HWND	_get_managed_handle(HWND unmanageg_handle);
@@ -63,12 +64,16 @@ namespace pu1soft
 				return _last_error_code;
 			}
 		}
+
+		//
 		event System::EventHandler<System::EventArgs^>^ MonitorEnabled;
+		//
 		event System::EventHandler<System::EventArgs^>^ MonitorDisabled;
 
 		//
 		void Start();
-
+		void Create();
+		void Destroy();
 	protected:
 		void WndProc(MAN_MSG % message) override;
 	};
