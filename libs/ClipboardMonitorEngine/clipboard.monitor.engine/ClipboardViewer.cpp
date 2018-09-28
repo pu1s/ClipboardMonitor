@@ -27,35 +27,41 @@ __managed_handle pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
 
 bool pu1soft::ClipboardViewer::_start_viewer()
 {
-	if(_clipboard_viewer == nullptr)
+	if(_clipboard_viewer_handle == nullptr)
 	{
 		return false;
 	}
 	else
 	{
-		_next_clipboard_viewer = (HWND)SetClipboardViewer(_clipboard_viewer);
-	}	_update_viewer();
+		if(!(_next_clipboard_viewer_handle = (HWND)SetClipboardViewer(_clipboard_viewer_handle)))
+		{
+			_last_error = GetLastError();
+
+			_nextClipboardViewerHandle = _get_managed_handle(_next_clipboard_viewer_handle);
+		}
+	}	
+
 	return true;
 }
 
 bool pu1soft::ClipboardViewer::_stop_viewer()
 {
-	return ChangeClipboardChain(_clipboard_viewer, _next_clipboard_viewer) ? true : false;
+	return ChangeClipboardChain(_clipboard_viewer_handle, _next_clipboard_viewer_handle) ? true : false;
 }
 
-void pu1soft::ClipboardViewer::_update_viewer()
-{
-	_clipboardViewer = _clipboardViewerWindow->Handle;
-	_clipboard_viewer = _get_unmanaged_handle(_clipboardViewer);
-	_next_clipboard_viewer = _get_unmanaged_handle(_nextClipboardViewer);
-}
 
 
 
 pu1soft::ClipboardViewer::ClipboardViewer()
 {
+	
+}
+
+void pu1soft::ClipboardViewer::Init()
+{
 	_clipboardViewerWindow = gcnew __viewer_form();
-	_update_viewer();
+	_clipboardViewerHandle = _clipboardViewerWindow->Handle;
+	_clipboard_viewer_handle = _get_unmanaged_handle(_clipboardViewerHandle);
 }
 
 
