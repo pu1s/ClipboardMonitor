@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ClipboardViewer.h"
 
-NAT_HWND pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPtr handle)
+NAT_HWND pu1ssoft::ClipboardViewerWindow::_get_unmanaged_handle(System::IntPtr handle)
 {
 	if (handle == System::IntPtr::Zero)
 	{
@@ -13,7 +13,7 @@ NAT_HWND pu1soft::ClipboardViewer::_get_unmanaged_handle(System::IntPtr handle)
 	}
 }
 
-MAN_HWND pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
+MAN_HWND pu1ssoft::ClipboardViewerWindow::_get_managed_handle(HWND hWnd)
 {
 	if (hWnd != nullptr)
 	{
@@ -29,7 +29,7 @@ MAN_HWND pu1soft::ClipboardViewer::_get_managed_handle(HWND hWnd)
 
 
 
-pu1soft::ClipboardViewer::ClipboardViewer()
+pu1ssoft::ClipboardViewerWindow::ClipboardViewerWindow()
 {
 	_last_error_code = 0;
 	_is_enabled = false;
@@ -37,28 +37,28 @@ pu1soft::ClipboardViewer::ClipboardViewer()
 }
 
 
-pu1soft::ClipboardViewer::!ClipboardViewer()
+pu1ssoft::ClipboardViewerWindow::!ClipboardViewerWindow()
 {
 	
 }
 
-void pu1soft::ClipboardViewer::Start()
+void pu1ssoft::ClipboardViewerWindow::Start()
 {
 	
 }
 
-void pu1soft::ClipboardViewer::Create()
+void pu1ssoft::ClipboardViewerWindow::Create()
 {
 	
 
 }
 
-void pu1soft::ClipboardViewer::Destroy()
+void pu1ssoft::ClipboardViewerWindow::Destroy()
 {
 	
 }
 
-void pu1soft::ClipboardViewer::WndProc(MAN_MSG % message)
+void pu1ssoft::ClipboardViewerWindow::WndProc(MAN_MSG % message)
 {
 	switch (message.Msg)
 	{
@@ -98,10 +98,15 @@ void pu1soft::ClipboardViewer::WndProc(MAN_MSG % message)
 	}
 }
 
-pu1soft::ClipboardViewer::~ClipboardViewer()
+pu1ssoft::ClipboardViewerWindow::~ClipboardViewerWindow()
 {
-	this->!ClipboardViewer();
+	this->!ClipboardViewerWindow();
 }
 
-
-
+void pu1ssoft::ClipboardViewer::Init()
+{
+	
+		
+	
+	return;
+}

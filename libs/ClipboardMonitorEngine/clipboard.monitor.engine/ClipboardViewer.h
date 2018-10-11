@@ -11,10 +11,10 @@ using namespace System;
 #define NAT_HWND	HWND
 #define MAN_MSG		System::Windows::Forms::Message
 
-namespace pu1soft
+namespace pu1ssoft
 {
 	// Clipboard Viewer
-	public ref class ClipboardViewer : public System::Windows::Forms::Form
+	public ref class ClipboardViewerWindow : public System::Windows::Forms::Form
 	{
 	private:
 		NAT_HWND	_next_clipboard_viewer;
@@ -30,11 +30,11 @@ namespace pu1soft
 
 	public:
 		// Public ctors
-		ClipboardViewer();
+		ClipboardViewerWindow();
 		// Public dctors
-		~ClipboardViewer();
+		~ClipboardViewerWindow();
 		// Finalizer
-		!ClipboardViewer();
+		!ClipboardViewerWindow();
 
 		//Public properties
 
@@ -77,7 +77,51 @@ namespace pu1soft
 	protected:
 		void WndProc(MAN_MSG % message) override;
 	};
+
+	public ref class ClipboardViewer
+	{
+	public: ClipboardViewerWindow ^ _clipboardViewerWindow;
+	public: 
+		ClipboardViewer()
+		{
+			_clipboardViewerWindow = gcnew ClipboardViewerWindow();
+			_clipboardViewerWindow->HandleCreated += gcnew System::EventHandler(this, &pu1ssoft::ClipboardViewer::OnHandleCreated);
+		}
+		~ClipboardViewer()
+		{
+			delete _clipboardViewerWindow;
+		}
+		void Init();
+		property IntPtr Handle
+		{
+			IntPtr get()
+			{
+				return _clipboardViewerWindow->Handle;
+			}
+		}
+		property IntPtr NextClipboardViewerHandle
+		{
+			IntPtr get()
+			{
+				return _clipboardViewerWindow->NextClipboardViewerHandle;
+			}
+		}
+		property Int32 LastError
+		{
+			Int32 get()
+			{
+				return _clipboardViewerWindow->LastError;
+			}
+		}
+		void OnHandleCreated(System::Object ^sender, System::EventArgs ^e);
+	};
 }
 
 
 
+
+
+void pu1ssoft::ClipboardViewer::OnHandleCreated(System::Object ^sender, System::EventArgs ^e)
+{
+	throw gcnew System::NotImplementedException();
+}
