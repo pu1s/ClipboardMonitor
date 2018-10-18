@@ -18,7 +18,12 @@ namespace pu1ssoft
 	{
 	private:
 		NAT_HWND _native_next_clipboard_viewer_handle;
+		NAT_HWND _native_first_clipboard_viewer_handle;
+		MAN_HWND _managedNextClipboardViewerHandle;
+		MAN_HWND _managedFirstClipboardViewerhandle;
+
 		DWORD _last_error;
+		
 	public:
 		property MAN_HWND ClipboardViewerHandle
 		{
@@ -33,15 +38,30 @@ namespace pu1ssoft
 
 	public ref class ClipboardViewer
 	{
+	private:
+		bool  _isVisibleForm;
 	public:
 		ClipboardViewerForm ^ _clipboardViewerForm;
-		
+		property bool IsVisibleForm
+		{
+			bool get()
+			{
+				return _isVisibleForm;
+			}
+			void set(bool IsVisibleForm)
+			{
+				_isVisibleForm = IsVisibleForm;
+			}
+		}
 	public:
 		ClipboardViewer()
 		{
+
 			_clipboardViewerForm = gcnew ClipboardViewerForm();
 			_clipboardViewerForm->Visible = false;
-			_clipboardViewerForm->Show();
+			_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
+			//_clipboardViewerForm->Show();
+
 		}
 		~ClipboardViewer()
 		{

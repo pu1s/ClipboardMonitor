@@ -7,15 +7,24 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 		switch ((int)message.Msg)
 		{
 		case WM_CREATE:
-			System::Windows::Forms::MessageBox::Show("window create");
+			_native_first_clipboard_viewer_handle = (HWND)GetClipboardViewer();
+			_managedFirstClipboardViewerhandle = System::IntPtr(_native_first_clipboard_viewer_handle);
 			_native_next_clipboard_viewer_handle = (HWND)SetClipboardViewer((HWND)this->Handle.ToPointer());
-			if (_native_next_clipboard_viewer_handle != nullptr && (_last_error = GetLastError() != 1400))
+			if (_native_first_clipboard_viewer_handle == 0 || _native_next_clipboard_viewer_handle == 0)
 			{
-				System::Windows::Forms::MessageBox::Show("Clpboard viewer create");
+				_last_error = GetLastError();
+				switch (_last_error)
+				{
+				case 1400:
+					System::Windows::Forms::MessageBox::Show("Clpboard viewer error! creation handle error!");
+					break;
+				default: 
+					break;
+				}
 			}
 			else
 			{
-				_last_error = GetLastError();
+				
 				System::Windows::Forms::MessageBox::Show(System::Int32(_last_error).ToString());
 			}
 
