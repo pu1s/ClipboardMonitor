@@ -24,27 +24,21 @@ namespace clipmonitor
     public partial class MainWindow : Window
     {
 
-        
         public MainWindow()
         {
            
             InitializeComponent();
-            cv = new ClipboardViewer();
+           
         }
-
-       
 
         public pu1ssoft.ClipboardViewer cv;
         //public pu1soft.ClipboardViewer cv1;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //btn1.Content = cv.ToString() + cv.Handle.ToString() + cv.NextClipboardViewerHandle.ToString() + cv.LastError.ToString();
+            cv = new ClipboardViewer();
+            
 
-            //cv.Create();
-            //cv.Show();
-            //cv1.Show();
-            cv.Init();
-            btn1.Content = cv.ToString() + cv.Handle.ToString() + cv.NextClipboardViewerHandle.ToString() + cv.LastError.ToString();
-           
         }   
     }
 }

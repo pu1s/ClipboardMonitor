@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <WinUser.h>
+//#include "native_window.h"
 
 #using <System.dll>
 #using <System.Windows.Forms.dll>
@@ -13,107 +14,40 @@ using namespace System;
 
 namespace pu1ssoft
 {
-	// Clipboard Viewer
-	public ref class ClipboardViewerWindow : public System::Windows::Forms::Form
+	public ref class ClipboardViewerForm : public System::Windows::Forms::Form
 	{
 	private:
-		NAT_HWND	_next_clipboard_viewer;
-		NAT_HWND	_clipboard_viewer;
-		MAN_HWND	_nextClipboardViewer;
-		MAN_HWND	_clipboardViewer;
-		bool		_is_enabled;
-		DWORD		_last_error_code;
-
-		// Private functions
-		NAT_HWND	_get_unmanaged_handle(System::IntPtr managed_handle);
-		MAN_HWND	_get_managed_handle(HWND unmanageg_handle);
-
+		NAT_HWND _native_next_clipboard_viewer_handle;
+		DWORD _last_error;
 	public:
-		// Public ctors
-		ClipboardViewerWindow();
-		// Public dctors
-		~ClipboardViewerWindow();
-		// Finalizer
-		!ClipboardViewerWindow();
-
-		//Public properties
-
-		// Return next clipboard viewer handle
-		property IntPtr NextClipboardViewerHandle
+		property MAN_HWND ClipboardViewerHandle
 		{
-			IntPtr get()
-			{
-				return _nextClipboardViewer;
-			}
-		}
-
-		// Return clipboard viewer handle
-		property IntPtr ClipboardViewerHandle
-		{
-			IntPtr get()
+			System::IntPtr get()
 			{
 				return this->Handle;
 			}
 		}
-
-		// Return last error code
-		property Int32 LastError
-		{
-			Int32 get()
-			{
-				return _last_error_code;
-			}
-		}
-
-		//
-		event System::EventHandler<System::EventArgs^>^ MonitorEnabled;
-		//
-		event System::EventHandler<System::EventArgs^>^ MonitorDisabled;
-
-		//
-		void Start();
-		void Create();
-		void Destroy();
 	protected:
 		void WndProc(MAN_MSG % message) override;
 	};
 
 	public ref class ClipboardViewer
 	{
-	public: ClipboardViewerWindow ^ _clipboardViewerWindow;
-	public: 
+	public:
+		ClipboardViewerForm ^ _clipboardViewerForm;
+		
+	public:
 		ClipboardViewer()
 		{
-			_clipboardViewerWindow = gcnew ClipboardViewerWindow();
-			_clipboardViewerWindow->HandleCreated += gcnew System::EventHandler(this, &pu1ssoft::ClipboardViewer::OnHandleCreated);
+			_clipboardViewerForm = gcnew ClipboardViewerForm();
+			_clipboardViewerForm->Visible = false;
+			_clipboardViewerForm->Show();
 		}
 		~ClipboardViewer()
 		{
-			delete _clipboardViewerWindow;
+			delete _clipboardViewerForm;
 		}
-		void Init();
-		property IntPtr Handle
-		{
-			IntPtr get()
-			{
-				return _clipboardViewerWindow->Handle;
-			}
-		}
-		property IntPtr NextClipboardViewerHandle
-		{
-			IntPtr get()
-			{
-				return _clipboardViewerWindow->NextClipboardViewerHandle;
-			}
-		}
-		property Int32 LastError
-		{
-			Int32 get()
-			{
-				return _clipboardViewerWindow->LastError;
-			}
-		}
-		void OnHandleCreated(System::Object ^sender, System::EventArgs ^e);
+		
 	};
 }
 
@@ -121,7 +55,7 @@ namespace pu1ssoft
 
 
 
-void pu1ssoft::ClipboardViewer::OnHandleCreated(System::Object ^sender, System::EventArgs ^e)
-{
-	throw gcnew System::NotImplementedException();
-}
+
+
+
+
