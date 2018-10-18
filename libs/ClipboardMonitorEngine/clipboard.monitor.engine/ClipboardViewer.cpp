@@ -23,7 +23,7 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 		case WM_CHANGECBCHAIN:
 			if (message.WParam == System::IntPtr(_native_next_clipboard_viewer_handle))
 			{
-				_native_next_clipboard_viewer_handle = (HWND)message.LParam.ToInt64();
+				_native_next_clipboard_viewer_handle = (HWND)message.LParam.ToPointer();
 			}
 			System::Windows::Forms::MessageBox::Show("Clpboard viewer un create");
 			break;
