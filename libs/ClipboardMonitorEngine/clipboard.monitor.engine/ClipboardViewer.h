@@ -25,11 +25,18 @@ namespace pu1ssoft
 		DWORD _last_error;
 		
 	public:
-		property MAN_HWND ClipboardViewerHandle
+		property MAN_HWND FirstClipboardViewerHandle
 		{
 			System::IntPtr get()
 			{
-				return this->Handle;
+				return System::IntPtr(_native_first_clipboard_viewer_handle);
+			}
+		}
+		property MAN_HWND NextClipboardViewerHandle
+		{
+			System::IntPtr get()
+			{
+				return System::IntPtr(_native_next_clipboard_viewer_handle);
 			}
 		}
 	protected:
@@ -59,8 +66,12 @@ namespace pu1ssoft
 
 			_clipboardViewerForm = gcnew ClipboardViewerForm();
 			_clipboardViewerForm->Visible = false;
-			_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
-			//_clipboardViewerForm->Show();
+			_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString() + 
+				" / " +
+				_clipboardViewerForm->FirstClipboardViewerHandle.ToString() + 
+				" / " +
+				_clipboardViewerForm->NextClipboardViewerHandle.ToString();
+			_clipboardViewerForm->Show();
 
 		}
 		~ClipboardViewer()
