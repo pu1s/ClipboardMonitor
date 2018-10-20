@@ -65,11 +65,12 @@ namespace pu1ssoft
 		{
 
 			_clipboardViewerForm = gcnew ClipboardViewerForm();
-			_clipboardViewerForm->Visible = false;
-			_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString() + 
-				" / " +
-				_clipboardViewerForm->FirstClipboardViewerHandle.ToString() + 
-				" / " +
+			_clipboardViewerForm->Visible = true;
+			_clipboardViewerForm->Text = 
+				_clipboardViewerForm->Handle.ToString() 
+				+ " / " +
+				_clipboardViewerForm->FirstClipboardViewerHandle.ToString() 
+				+ " / " +
 				_clipboardViewerForm->NextClipboardViewerHandle.ToString();
 			_clipboardViewerForm->Show();
 

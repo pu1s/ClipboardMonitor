@@ -34,7 +34,7 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			{
 				_native_next_clipboard_viewer_handle = (HWND)message.LParam.ToPointer();
 			}
-			System::Windows::Forms::MessageBox::Show("Clpboard viewer un create");
+			
 			break;
 		case WM_DRAWCLIPBOARD:
 			System::Windows::Forms::MessageBox::Show("WM_DRAWCLIPBOARD");
@@ -42,6 +42,9 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			{
 				SendMessage((HWND)_native_next_clipboard_viewer_handle, (UINT)message.Msg, (WPARAM)message.WParam.ToInt64(), (LPARAM)message.LParam.ToInt64());
 			}
+			break;
+		case WM_CLOSE:
+			ChangeClipboardChain((HWND)this->Handle.ToPointer(), _native_next_clipboard_viewer_handle);
 			break;
 		default:
 			DefWndProc(message);

@@ -37,13 +37,18 @@ namespace clipmonitor
         {
             //btn1.Content = cv.ToString() + cv.Handle.ToString() + cv.NextClipboardViewerHandle.ToString() + cv.LastError.ToString();
 
-           
+            cv = new ClipboardViewer();
 
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            cv = new ClipboardViewer();
+           
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }
