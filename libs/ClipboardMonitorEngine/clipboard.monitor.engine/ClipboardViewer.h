@@ -21,10 +21,18 @@ namespace pu1ssoft
 		NAT_HWND _native_first_clipboard_viewer_handle;
 		MAN_HWND _managedNextClipboardViewerHandle;
 		MAN_HWND _managedFirstClipboardViewerhandle;
-
+		System::Windows::Forms::Label^ label1;
+		System::Windows::Forms::TextBox^ textBox1;
 		DWORD _last_error;
+		void Initialize();
 		
 	public:
+		ClipboardViewerForm()
+		{
+			Initialize();
+		}
+		~ClipboardViewerForm();
+
 		property MAN_HWND ClipboardViewerHandle
 		{
 			System::IntPtr get()
@@ -60,7 +68,8 @@ namespace pu1ssoft
 			_clipboardViewerForm = gcnew ClipboardViewerForm();
 			_clipboardViewerForm->Visible = false;
 			_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
-			//_clipboardViewerForm->Show();
+			
+			_clipboardViewerForm->Show();
 
 		}
 		~ClipboardViewer()

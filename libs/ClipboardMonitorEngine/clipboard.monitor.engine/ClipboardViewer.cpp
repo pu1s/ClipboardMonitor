@@ -1,6 +1,29 @@
 #include "stdafx.h"
 #include "ClipboardViewer.h"
 
+void pu1ssoft::ClipboardViewerForm::Initialize()
+{
+	label1 = gcnew System::Windows::Forms::Label();
+	textBox1 = gcnew System::Windows::Forms::TextBox();
+	label1->Top = 10;
+	label1->Left = 10;
+	label1->Text = L"Test";
+	textBox1->Top = 40;
+	textBox1->Left = 10;
+	textBox1->Width = 100;
+	textBox1->Height = 20;
+	textBox1->Text = L"text box";
+	this->Controls->Add(label1);
+	this->Controls->Add(textBox1);
+
+}
+
+pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
+{
+	delete label1;
+	delete textBox1;
+}
+
 void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 {
 	
