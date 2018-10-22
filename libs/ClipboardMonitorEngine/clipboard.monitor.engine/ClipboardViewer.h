@@ -34,7 +34,7 @@ namespace pu1ssoft
 		// private constants
 		const MAN_INT						_initTopPos		= 0;
 		const MAN_INT						_initLeftPos	= 0;
-		const MAN_INT						_initWidth		= 120;
+		const MAN_INT						_initWidth		= 200;
 		const MAN_INT						_initHigth		= 20;
 		DWORD								_last_error;
 		void Initialize();

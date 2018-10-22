@@ -3,21 +3,35 @@
 
 void pu1ssoft::ClipboardViewerForm::Initialize()
 {
-	_managedFirstClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	_managedNextClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	_managedThisClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	_managedErrorClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	_managedFirstClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
-	_managedNextClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
-	_managedThisClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
-	_managedFirstClipboardViewerHandleLabel->Top = 10;
-	_managedFirstClipboardViewerHandleLabel->Left = 10;
-	_managedFirstClipboardViewerHandleLabel->Text = L"First Clipboard Viewer Handle:";
-	_managedFirstClipboardViewerHandleTextBox->Top = 40;
-	_managedFirstClipboardViewerHandleTextBox->Left = 10;
-	_managedFirstClipboardViewerHandleTextBox->Width = 100;
-	_managedFirstClipboardViewerHandleTextBox->Height = 20;
-	_managedFirstClipboardViewerHandleTextBox->Text = System::IntPtr(_native_first_clipboard_viewer_handle).ToString();
+	this->SetStyle(System::Windows::Forms::ControlStyles::ContainerControl | System::Windows::Forms::ControlStyles::DoubleBuffer, true);
+	this->Width = _initWidth * 3;
+
+	// first clipboard viewer label
+	_managedFirstClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
+	_managedFirstClipboardViewerHandleLabel->Top			= _initTopPos;
+	_managedFirstClipboardViewerHandleLabel->Left			= _initLeftPos;
+	_managedFirstClipboardViewerHandleLabel->Width			= _initWidth;
+	_managedFirstClipboardViewerHandleLabel->Text			= L"First Clipboard Viewer Handle:";
+	
+	// first clipboard viewer textbox
+	_managedFirstClipboardViewerHandleTextBox				= gcnew System::Windows::Forms::TextBox();
+	_managedFirstClipboardViewerHandleTextBox->Top			= _initTopPos;
+	_managedFirstClipboardViewerHandleTextBox->Left			= _managedFirstClipboardViewerHandleLabel->Width + 10;
+	_managedFirstClipboardViewerHandleTextBox->Width		= _initWidth;
+	_managedFirstClipboardViewerHandleTextBox->Height		= _initHigth;
+	_managedFirstClipboardViewerHandleTextBox->Text			= System::IntPtr(_native_first_clipboard_viewer_handle).ToString();
+
+	// next clipboard viewer label
+	_managedNextClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
+
+
+	_managedThisClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
+	_managedErrorClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
+	
+	_managedNextClipboardViewerHandleTextBox				= gcnew System::Windows::Forms::TextBox();
+	_managedThisClipboardViewerHandleTextBox				= gcnew System::Windows::Forms::TextBox();
+	
+	
 	this->Controls->Add(_managedFirstClipboardViewerHandleLabel);
 	this->Controls->Add(_managedNextClipboardViewerHandleLabel);
 	this->Controls->Add(_managedThisClipboardViewerHandleLabel);
