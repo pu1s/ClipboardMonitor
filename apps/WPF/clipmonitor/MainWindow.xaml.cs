@@ -28,7 +28,7 @@ namespace clipmonitor
         {
            
             InitializeComponent();
-           
+            
         }
 
         public pu1ssoft.ClipboardViewer cv;
@@ -36,9 +36,19 @@ namespace clipmonitor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //btn1.Content = cv.ToString() + cv.Handle.ToString() + cv.NextClipboardViewerHandle.ToString() + cv.LastError.ToString();
-            cv = new ClipboardViewer();
-            
 
-        }   
+            cv = new ClipboardViewer();
+
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
     }
 }
