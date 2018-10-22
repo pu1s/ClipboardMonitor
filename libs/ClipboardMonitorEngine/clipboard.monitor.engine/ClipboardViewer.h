@@ -22,14 +22,14 @@ namespace pu1ssoft
 		NAT_HWND							_native_first_clipboard_viewer_handle;
 		MAN_HWND							_managedNextClipboardViewerHandle;
 		MAN_HWND							_managedFirstClipboardViewerhandle;
-		System::Windows::Forms::Label^		FirstClipboardViewerHandleLabel;
-		System::Windows::Forms::Label^		NextClipboardViewerHandleLabel;
-		System::Windows::Forms::Label^		ThisClipboardViewerHandleLabel;
-		System::Windows::Forms::Label^		ErrorClipboardViewerHandleLabel;
-		System::Windows::Forms::TextBox^	FirstClipboardViewerHandleTextBox;
-		System::Windows::Forms::TextBox^	NextClipboardViewerHandleTextBox;
-		System::Windows::Forms::TextBox^	ThisClipboardViewerHandleTextBox;
-		System::Windows::Forms::TextBox^	ErrorClipboardViewerHandleTextBox;
+		System::Windows::Forms::Label^		_managedFirstClipboardViewerHandleLabel;
+		System::Windows::Forms::Label^		_managedNextClipboardViewerHandleLabel;
+		System::Windows::Forms::Label^		_managedThisClipboardViewerHandleLabel;
+		System::Windows::Forms::Label^		_managedErrorClipboardViewerHandleLabel;
+		System::Windows::Forms::TextBox^	_managedFirstClipboardViewerHandleTextBox;
+		System::Windows::Forms::TextBox^	_managedNextClipboardViewerHandleTextBox;
+		System::Windows::Forms::TextBox^	_managedThisClipboardViewerHandleTextBox;
+		System::Windows::Forms::TextBox^	_managedErrorClipboardViewerHandleTextBox;
 
 		// private constants
 		const MAN_INT						_initTopPos		= 0;
@@ -39,17 +39,19 @@ namespace pu1ssoft
 		DWORD								_last_error;
 		void Initialize();
 		void UpdateForm();
+		void OnClipboardChanged();
 	public:
 		ClipboardViewerForm();
 		~ClipboardViewerForm();
-		void Update();
-		property System::Int32 LastError
+
+		property MAN_INT LastError
 		{
-			System::Int32 get()
+			MAN_INT get()
 			{
-				return System::Int32(_last_error);
+				return MAN_INT(_last_error);
 			}
 		}
+		event System::EventHandler^ OnClipbardChanged;
 	protected:
 		void WndProc(MAN_MSG % message) override;
 	};
@@ -72,20 +74,8 @@ namespace pu1ssoft
 			}
 		}
 	public:
-		ClipboardViewer()
-		{
-
-			_clipboardViewerForm = gcnew ClipboardViewerForm();
-			_clipboardViewerForm->Visible = false;
-			_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
-			
-			_clipboardViewerForm->Show();
-
-		}
-		~ClipboardViewer()
-		{
-			delete _clipboardViewerForm;
-		}
+		ClipboardViewer();
+		~ClipboardViewer();
 		
 	};
 }

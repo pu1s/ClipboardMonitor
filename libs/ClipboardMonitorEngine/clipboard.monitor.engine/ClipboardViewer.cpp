@@ -3,29 +3,34 @@
 
 void pu1ssoft::ClipboardViewerForm::Initialize()
 {
-	FirstClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	NextClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	ThisClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	ErrorClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
-	FirstClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
-	NextClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
-	ThisClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
-	FirstClipboardViewerHandleLabel->Top = 10;
-	FirstClipboardViewerHandleLabel->Left = 10;
-	FirstClipboardViewerHandleLabel->Text = L"First Clipboard Viewer Handle:";
-	FirstClipboardViewerHandleTextBox->Top = 40;
-	FirstClipboardViewerHandleTextBox->Left = 10;
-	FirstClipboardViewerHandleTextBox->Width = 100;
-	FirstClipboardViewerHandleTextBox->Height = 20;
-	FirstClipboardViewerHandleTextBox->Text = System::IntPtr(_native_first_clipboard_viewer_handle).ToString();
-	this->Controls->Add(FirstClipboardViewerHandleLabel);
-	this->Controls->Add(NextClipboardViewerHandleLabel);
-	this->Controls->Add(ThisClipboardViewerHandleLabel);
-	this->Controls->Add(FirstClipboardViewerHandleTextBox);
+	_managedFirstClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
+	_managedNextClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
+	_managedThisClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
+	_managedErrorClipboardViewerHandleLabel		= gcnew System::Windows::Forms::Label();
+	_managedFirstClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
+	_managedNextClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
+	_managedThisClipboardViewerHandleTextBox	= gcnew System::Windows::Forms::TextBox();
+	_managedFirstClipboardViewerHandleLabel->Top = 10;
+	_managedFirstClipboardViewerHandleLabel->Left = 10;
+	_managedFirstClipboardViewerHandleLabel->Text = L"First Clipboard Viewer Handle:";
+	_managedFirstClipboardViewerHandleTextBox->Top = 40;
+	_managedFirstClipboardViewerHandleTextBox->Left = 10;
+	_managedFirstClipboardViewerHandleTextBox->Width = 100;
+	_managedFirstClipboardViewerHandleTextBox->Height = 20;
+	_managedFirstClipboardViewerHandleTextBox->Text = System::IntPtr(_native_first_clipboard_viewer_handle).ToString();
+	this->Controls->Add(_managedFirstClipboardViewerHandleLabel);
+	this->Controls->Add(_managedNextClipboardViewerHandleLabel);
+	this->Controls->Add(_managedThisClipboardViewerHandleLabel);
+	this->Controls->Add(_managedFirstClipboardViewerHandleTextBox);
 
 }
 
 void pu1ssoft::ClipboardViewerForm::UpdateForm()
+{
+	throw gcnew System::NotImplementedException();
+}
+
+void pu1ssoft::ClipboardViewerForm::OnClipboardChanged()
 {
 	throw gcnew System::NotImplementedException();
 }
@@ -37,22 +42,17 @@ inline pu1ssoft::ClipboardViewerForm::ClipboardViewerForm()
 
 pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
 {
-	delete FirstClipboardViewerHandleLabel;
-	delete NextClipboardViewerHandleLabel;
-	delete ThisClipboardViewerHandleLabel;
-	delete FirstClipboardViewerHandleTextBox;
-	delete NextClipboardViewerHandleTextBox;
-	delete ThisClipboardViewerHandleTextBox;
+	delete _managedFirstClipboardViewerHandleLabel;
+	delete _managedNextClipboardViewerHandleLabel;
+	delete _managedThisClipboardViewerHandleLabel;
+	delete _managedFirstClipboardViewerHandleTextBox;
+	delete _managedNextClipboardViewerHandleTextBox;
+	delete _managedThisClipboardViewerHandleTextBox;
 }
 
-void pu1ssoft::ClipboardViewerForm::Update()
-{
-	
-}
 
 void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 {
-	
 		switch ((int)message.Msg)
 		{
 		case WM_CREATE:
@@ -100,4 +100,20 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			break;
 		}
 	
+}
+
+pu1ssoft::ClipboardViewer::ClipboardViewer()
+{
+
+	_clipboardViewerForm = gcnew ClipboardViewerForm();
+	_clipboardViewerForm->Visible = false;
+	_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
+
+	_clipboardViewerForm->Show();
+
+}
+
+pu1ssoft::ClipboardViewer::~ClipboardViewer()
+{
+	delete _clipboardViewerForm;
 }
