@@ -43,10 +43,19 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 	_managedThisClipboardViewerHandleLabel->Width			= _initWidth;
 	_managedThisClipboardViewerHandleLabel->Text			= L"This Clipbard Viewer Handle: ";
 
-	_managedErrorClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
-	
-	
+	// this clipboard viever textbox
 	_managedThisClipboardViewerHandleTextBox				= gcnew System::Windows::Forms::TextBox();
+	_managedThisClipboardViewerHandleTextBox->Top			= _initTopPos + verticalInterval * 2;
+	_managedThisClipboardViewerHandleTextBox->Width			= _initWidth;
+	_managedThisClipboardViewerHandleTextBox->Left			= _managedThisClipboardViewerHandleLabel->Right + 10;
+	_managedThisClipboardViewerHandleTextBox->Text			= this->Handle.ToString();
+
+	// last error label
+	_managedErrorClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
+	_managedErrorClipboardViewerHandleLabel->Top			= _initTopPos + verticalInterval * 3;
+	//_managedErrorClipboardViewerHandleLabel->Left
+	
+	
 	
 	
 	this->Controls->Add(_managedFirstClipboardViewerHandleLabel);
@@ -56,6 +65,7 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 	this->Controls->Add(_managedNextClipboardViewerHandleTextBox);
 
 	this->Controls->Add(_managedThisClipboardViewerHandleLabel);
+	this->Controls->Add(_managedThisClipboardViewerHandleTextBox);
 }
 
 void pu1ssoft::ClipboardViewerForm::UpdateForm()
