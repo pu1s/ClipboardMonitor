@@ -52,8 +52,10 @@ namespace pu1ssoft
 			}
 		}
 		event System::EventHandler^ OnClipbardChanged;
+		
 	protected:
 		void WndProc(MAN_MSG % message) override;
+		void OnKeyDown(System::Object ^sender, System::Windows::Forms::KeyEventArgs ^e);
 	};
 
 	public ref class ClipboardViewer
@@ -76,6 +78,7 @@ namespace pu1ssoft
 	public:
 		ClipboardViewer();
 		~ClipboardViewer();
+		
 		
 	};
 }

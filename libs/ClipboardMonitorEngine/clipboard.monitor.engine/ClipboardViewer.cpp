@@ -82,7 +82,10 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 
 void pu1ssoft::ClipboardViewerForm::UpdateForm()
 {
-	throw gcnew System::NotImplementedException();
+	_managedFirstClipboardViewerHandleTextBox->Text		= System::IntPtr(_native_first_clipboard_viewer_handle).ToString();
+	_managedNextClipboardViewerHandleTextBox->Text		= System::IntPtr(_native_next_clipboard_viewer_handle).ToString();
+	_managedThisClipboardViewerHandleTextBox->Text		= this->Handle.ToString();
+	_managedErrorClipboardViewerHandleTextBox->Text		= this->LastError.ToString();
 }
 
 void pu1ssoft::ClipboardViewerForm::OnClipboardChanged()
@@ -93,6 +96,7 @@ void pu1ssoft::ClipboardViewerForm::OnClipboardChanged()
 inline pu1ssoft::ClipboardViewerForm::ClipboardViewerForm()
 {
 	Initialize();
+	this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &pu1ssoft::ClipboardViewerForm::OnKeyDown);
 }
 
 pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
@@ -114,24 +118,7 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			_native_first_clipboard_viewer_handle = (HWND)GetClipboardViewer();
 			_managedFirstClipboardViewerhandle = System::IntPtr(_native_first_clipboard_viewer_handle);
 			_native_next_clipboard_viewer_handle = (HWND)SetClipboardViewer((HWND)this->Handle.ToPointer());
-			if (_native_first_clipboard_viewer_handle == 0 || _native_next_clipboard_viewer_handle == 0)
-			{
-				_last_error = GetLastError();
-				switch (_last_error)
-				{
-				case 1400:
-					System::Windows::Forms::MessageBox::Show("Clpboard viewer error! creation handle error!");
-					break;
-				default: 
-					break;
-				}
-			}
-			else
-			{
-				
-				System::Windows::Forms::MessageBox::Show(System::Int32(_last_error).ToString());
-			}
-
+			_last_error = GetLastError();
 			break;
 		case WM_CHANGECBCHAIN:
 			if (message.WParam == System::IntPtr(_native_next_clipboard_viewer_handle))
@@ -144,10 +131,11 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			System::Windows::Forms::MessageBox::Show("WM_DRAWCLIPBOARD");
 			if (_native_next_clipboard_viewer_handle != nullptr)
 			{
-				SendMessage((HWND)_native_next_clipboard_viewer_handle, (UINT)message.Msg, (WPARAM)message.WParam.ToInt64(), (LPARAM)message.LParam.ToInt64());
+				System::Windows::Forms::MessageBox::Show(message.Msg.ToString());
+				SendMessage((HWND)_native_next_clipboard_viewer_handle, (UINT)message.Msg, (WPARAM)message.WParam.ToPointer(), (LPARAM)message.LParam.ToPointer());
 			}
 			break;
-		case WM_CLOSE:
+		case WM_DESTROY:
 			ChangeClipboardChain((HWND)this->Handle.ToPointer(), _native_next_clipboard_viewer_handle);
 			break;
 		default:
@@ -157,6 +145,8 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 	
 }
 
+
+
 pu1ssoft::ClipboardViewer::ClipboardViewer()
 {
 
@@ -165,10 +155,24 @@ pu1ssoft::ClipboardViewer::ClipboardViewer()
 	_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
 
 	_clipboardViewerForm->Show();
+	
 
 }
 
 pu1ssoft::ClipboardViewer::~ClipboardViewer()
 {
+	_clipboardViewerForm->Close();
 	delete _clipboardViewerForm;
+}
+
+
+
+
+
+
+
+void pu1ssoft::ClipboardViewerForm::OnKeyDown(System::Object ^sender, System::Windows::Forms::KeyEventArgs ^e)
+{
+	this->UpdateForm();
+	System::Windows::Forms::MessageBox::Show("UUUU");
 }
