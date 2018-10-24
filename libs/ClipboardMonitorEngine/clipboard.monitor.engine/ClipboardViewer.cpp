@@ -23,7 +23,7 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 
 	// next clipboard viewer label
 	_managedNextClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
-
+	_managedNextClipboardViewerHandleLabel->Top				= _initTopPos + 20;
 
 	_managedThisClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
 	_managedErrorClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
