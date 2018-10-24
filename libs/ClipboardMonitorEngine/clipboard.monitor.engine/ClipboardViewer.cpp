@@ -7,6 +7,8 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 	this->Width = _initWidth * 3;
 
 	const int verticalInterval = 25;
+
+
 	// first clipboard viewer label
 	_managedFirstClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
 	_managedFirstClipboardViewerHandleLabel->Top			= _initTopPos;
@@ -53,11 +55,18 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 	// last error label
 	_managedErrorClipboardViewerHandleLabel					= gcnew System::Windows::Forms::Label();
 	_managedErrorClipboardViewerHandleLabel->Top			= _initTopPos + verticalInterval * 3;
-	//_managedErrorClipboardViewerHandleLabel->Left
-	
-	
-	
-	
+	_managedErrorClipboardViewerHandleLabel->Width			= _initWidth;
+	_managedErrorClipboardViewerHandleLabel->Left			= _initLeftPos;
+	_managedErrorClipboardViewerHandleLabel->Text			= L"Last error: ";
+
+	// last error textbox
+	_managedErrorClipboardViewerHandleTextBox				= gcnew System::Windows::Forms::TextBox();
+	_managedErrorClipboardViewerHandleTextBox->Top			= _initTopPos + verticalInterval * 3;
+	_managedErrorClipboardViewerHandleTextBox->Width		= _initWidth;
+	_managedErrorClipboardViewerHandleTextBox->Left			= _managedErrorClipboardViewerHandleLabel->Right + 10;
+	_managedErrorClipboardViewerHandleTextBox->Text			= this->LastError.ToString();
+
+
 	this->Controls->Add(_managedFirstClipboardViewerHandleLabel);
 	this->Controls->Add(_managedFirstClipboardViewerHandleTextBox);
 
@@ -66,6 +75,9 @@ void pu1ssoft::ClipboardViewerForm::Initialize()
 
 	this->Controls->Add(_managedThisClipboardViewerHandleLabel);
 	this->Controls->Add(_managedThisClipboardViewerHandleTextBox);
+
+	this->Controls->Add(_managedErrorClipboardViewerHandleLabel);
+	this->Controls->Add(_managedErrorClipboardViewerHandleTextBox);
 }
 
 void pu1ssoft::ClipboardViewerForm::UpdateForm()
