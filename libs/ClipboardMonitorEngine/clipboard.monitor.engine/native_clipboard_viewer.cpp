@@ -18,9 +18,20 @@ void native_clipboard_viewer::init(HWND _this_viewer) noexcept
 	_last_error = GetLastError();
 }
 
-LRESULT native_clipboard_viewer::def_clipboard_viewer_proc(HWND hWnd, UINT msg, LPARAM lParam, WPARAM wParam)
+LRESULT native_clipboard_viewer::def_clipboard_viewer_proc(MSG & msg)
 {
-	return LRESULT();
+	switch ((UINT)msg.message)
+	{
+	case WM_CREATE:
+		break;
+		MessageBox((HWND)msg.hwnd, L"UUUU", L"PPPPP", NULL);
+	case WM_DRAWCLIPBOARD:
+		MessageBox((HWND)msg.hwnd, L"uuuu", L"ppppp", NULL);
+		break;
+	default:
+		break;
+	}
+	return 0;
 }
 
 HWND native_clipboard_viewer::get_next_clipboard_viewer_handle() noexcept

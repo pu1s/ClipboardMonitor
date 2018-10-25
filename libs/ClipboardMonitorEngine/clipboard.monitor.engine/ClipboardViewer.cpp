@@ -116,7 +116,7 @@ pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
 void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 {
 	
-	//ncbv->def_clipboard_viewer_proc();
+		ncbv->def_clipboard_viewer_proc(WinTypesConverter::ManagedMsgToUnmanagedMsg(message));
 		switch ((int)message.Msg)
 		{
 		/*

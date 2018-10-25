@@ -7,7 +7,7 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
-public ref class WinTypesHelpers
+public ref class WinTypesConverter
 {
 public:
 	static IntPtr UnmanagedHandleToManagedHandle(HWND Handle);

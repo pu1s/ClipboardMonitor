@@ -1,25 +1,25 @@
 #include "stdafx.h"
-#include "WinTypesHelpers.h"
+#include "WinTypesConverter.h"
 
 
-IntPtr WinTypesHelpers::UnmanagedHandleToManagedHandle(HWND Handle)
+IntPtr WinTypesConverter::UnmanagedHandleToManagedHandle(HWND Handle)
 {
 	return IntPtr(Handle);
 }
 
-HWND WinTypesHelpers::ManagedHandleToUnmanagedHandle(IntPtr Handle)
+HWND WinTypesConverter::ManagedHandleToUnmanagedHandle(IntPtr Handle)
 {
 	return (HWND)static_cast<HWND>(Handle.ToPointer());
 }
 
-Message WinTypesHelpers::UnmanagedMsgToManagedMsg(MSG msg)
+Message WinTypesConverter::UnmanagedMsgToManagedMsg(MSG msg)
 {
 	Message m_message;
 	m_message.Create(IntPtr(msg.hwnd), (int)msg.message, IntPtr((int)msg.wParam), IntPtr((long long)msg.lParam));
 	return m_message;
 }
 
-MSG WinTypesHelpers::ManagedMsgToUnmanagedMsg(Message msg)
+MSG WinTypesConverter::ManagedMsgToUnmanagedMsg(Message msg)
 {
 	MSG m;
 	m.hwnd		= (HWND)static_cast<HWND>(msg.HWnd.ToPointer());

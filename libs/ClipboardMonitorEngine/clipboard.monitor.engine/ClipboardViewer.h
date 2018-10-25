@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <WinUser.h>
 #include "native_clipboard_viewer.h"
-#include "WinTypesHelpers.h"
+#include "WinTypesConverter.h"
 //#include "native_window.h"
 
 #using <System.dll>

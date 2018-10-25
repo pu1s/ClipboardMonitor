@@ -13,7 +13,7 @@ public:
 	native_clipboard_viewer();
 	~native_clipboard_viewer();
 	void init(HWND _this_viewer) noexcept;
-	LRESULT def_clipboard_viewer_proc(HWND hWnd, UINT msg, LPARAM lParam, WPARAM wParam);
+	LRESULT def_clipboard_viewer_proc(MSG & msg);
 	HWND get_next_clipboard_viewer_handle() noexcept;
 	HWND get_first_clipboard_viewer_handle() noexcept;
 	DWORD get_last_error() noexcept;
