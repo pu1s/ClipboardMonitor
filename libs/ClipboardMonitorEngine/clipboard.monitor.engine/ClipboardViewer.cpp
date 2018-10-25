@@ -125,7 +125,10 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			{
 				_native_next_clipboard_viewer_handle = (HWND)message.LParam.ToPointer();
 			}
-			
+			else if (_native_next_clipboard_viewer_handle != NULL)
+			{
+				SendMessage(_native_first_clipboard_viewer_handle, (UINT)message.Msg, (WPARAM)message.WParam.ToPointer(), (LPARAM)message.LParam.ToPointer());
+			}
 			break;
 		case WM_DRAWCLIPBOARD:
 			System::Windows::Forms::MessageBox::Show("WM_DRAWCLIPBOARD");
