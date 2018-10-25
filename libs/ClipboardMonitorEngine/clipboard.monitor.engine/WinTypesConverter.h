@@ -7,6 +7,7 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
+
 public ref class WinTypesConverter
 {
 public:
@@ -15,4 +16,19 @@ public:
 	static Message UnmanagedMsgToManagedMsg(MSG msg);
 	static MSG ManagedMsgToUnmanagedMsg(Message msg);
 };
+
+namespace pu1ssoft
+{
+	template<typename From, typename To>
+	static To Convert(From value) {
+		return To();
+	}
+	
+	template<>
+	static HWND Convert<IntPtr, HWND>(IntPtr h)
+	{
+		return (HWND)static_cast<HWND>(h.ToPointer());
+	}
+	
+}
 
