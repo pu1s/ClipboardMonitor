@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 using pu1ssoft;
 
 
@@ -23,7 +24,7 @@ namespace clipmonitor
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        
         public MainWindow()
         {
            
@@ -43,7 +44,8 @@ namespace clipmonitor
 
         private void Window_Activated(object sender, EventArgs e)
         {
-           
+            
+            
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)

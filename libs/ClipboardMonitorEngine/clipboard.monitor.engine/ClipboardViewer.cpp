@@ -3,6 +3,9 @@
 
 void pu1ssoft::ClipboardViewerForm::Initialize()
 {
+	ncbv = new native_clipboard_viewer();
+	ncbv->init(static_cast<HWND>(this->Handle.ToPointer()));
+
 	this->SetStyle(System::Windows::Forms::ControlStyles::ContainerControl | System::Windows::Forms::ControlStyles::DoubleBuffer, true);
 	this->Width = _initWidth * 3;
 
@@ -112,14 +115,10 @@ pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
 
 void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 {
+	//ncbv->def_clipboard_viewer_proc(message.HWnd.ToPointer(), );
 		switch ((int)message.Msg)
 		{
-		case WM_CREATE:
-			_native_first_clipboard_viewer_handle = (HWND)GetClipboardViewer();
-			_managedFirstClipboardViewerhandle = System::IntPtr(_native_first_clipboard_viewer_handle);
-			_native_next_clipboard_viewer_handle = (HWND)SetClipboardViewer((HWND)this->Handle.ToPointer());
-			_last_error = GetLastError();
-			break;
+		/*
 		case WM_CHANGECBCHAIN:
 			if (message.WParam == System::IntPtr(_native_next_clipboard_viewer_handle))
 			{
@@ -137,7 +136,7 @@ void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 			break;
 		case WM_DESTROY:
 			ChangeClipboardChain((HWND)this->Handle.ToPointer(), _native_next_clipboard_viewer_handle);
-			break;
+			break;*/
 		default:
 			DefWndProc(message);
 			break;
@@ -156,7 +155,8 @@ pu1ssoft::ClipboardViewer::ClipboardViewer()
 
 	_clipboardViewerForm->Show();
 	
-
+	
+	
 }
 
 pu1ssoft::ClipboardViewer::~ClipboardViewer()

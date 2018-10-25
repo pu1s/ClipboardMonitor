@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <WinUser.h>
+#include "native_clipboard_viewer.h"
 //#include "native_window.h"
 
 #using <System.dll>
@@ -40,6 +41,7 @@ namespace pu1ssoft
 		void Initialize();
 		void UpdateForm();
 		void OnClipboardChanged();
+		native_clipboard_viewer* ncbv;
 	public:
 		ClipboardViewerForm();
 		~ClipboardViewerForm();
@@ -55,12 +57,14 @@ namespace pu1ssoft
 		
 	protected:
 		void WndProc(MAN_MSG % message) override;
+		
 		void OnKeyDown(System::Object ^sender, System::Windows::Forms::KeyEventArgs ^e);
 	};
 
 	public ref class ClipboardViewer
 	{
 	private:
+		
 		bool  _isVisibleForm;
 	public:
 		ClipboardViewerForm ^ _clipboardViewerForm;
