@@ -23,8 +23,9 @@ LRESULT native_clipboard_viewer::def_clipboard_viewer_proc(MSG & msg)
 	switch ((UINT)msg.message)
 	{
 	case WM_CREATE:
-		break;
 		MessageBox((HWND)msg.hwnd, L"UUUU", L"PPPPP", NULL);
+		break;
+		
 	case WM_DRAWCLIPBOARD:
 		MessageBox((HWND)msg.hwnd, L"uuuu", L"ppppp", NULL);
 		break;
