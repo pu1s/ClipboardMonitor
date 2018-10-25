@@ -115,7 +115,8 @@ pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
 
 void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 {
-	//ncbv->def_clipboard_viewer_proc(message.HWnd.ToPointer(), );
+	
+	//ncbv->def_clipboard_viewer_proc();
 		switch ((int)message.Msg)
 		{
 		/*
