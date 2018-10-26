@@ -21,7 +21,7 @@ private:
 	HWND		_this_clipboard_viewer_handle;
 	HWND		_current_clipboard_owner_handle;
 	bool		_is_enabled;
-	DWORD		_last_error;
+	DWORD		_system_last_error;
 	DWORD		_internal_last_error;
 public:
 	/*
@@ -67,7 +67,12 @@ public:
 	/*
 	returned native clipboard viewer system error
 	*/
-	DWORD APIENTRY get_last_error() noexcept;
+	DWORD APIENTRY get_last_system_error() noexcept;
+
+	/*
+	returned native clipboard viewer internal error
+	*/
+	DWORD APIENTRY get_last_internal_error() noexcept;
 
 	/*
 	returned handle of current clipboard owner

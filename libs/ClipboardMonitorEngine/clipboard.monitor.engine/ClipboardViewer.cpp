@@ -4,7 +4,10 @@
 void pu1ssoft::ClipboardViewerForm::Initialize()
 {
 	_ncbv = new native_clipboard_viewer();
-	if(!_ncbv->init(Convert<IntPtr, HWND>(this->Handle))) return;
+	if (!_ncbv->init(Convert<IntPtr, HWND>(this->Handle)))
+	{
+		System::Windows::Forms::MessageBox::Show(_ncbv->get_last_system_error().ToString());
+	}
 
 	this->SetStyle(System::Windows::Forms::ControlStyles::ContainerControl | System::Windows::Forms::ControlStyles::DoubleBuffer, true);
 	this->Width = _initWidth * 3;
