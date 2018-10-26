@@ -3,8 +3,8 @@
 
 void pu1ssoft::ClipboardViewerForm::Initialize()
 {
-	ncbv = new native_clipboard_viewer();
-	ncbv->init(static_cast<HWND>(this->Handle.ToPointer()));
+	_ncbv = new native_clipboard_viewer();
+	if(!_ncbv->init(Convert<IntPtr, HWND>(this->Handle))) return;
 
 	this->SetStyle(System::Windows::Forms::ControlStyles::ContainerControl | System::Windows::Forms::ControlStyles::DoubleBuffer, true);
 	this->Width = _initWidth * 3;
@@ -104,6 +104,7 @@ inline pu1ssoft::ClipboardViewerForm::ClipboardViewerForm()
 
 pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
 {
+	this->!ClipboardViewerForm();
 	delete _managedFirstClipboardViewerHandleLabel;
 	delete _managedNextClipboardViewerHandleLabel;
 	delete _managedThisClipboardViewerHandleLabel;
@@ -112,55 +113,31 @@ pu1ssoft::ClipboardViewerForm::~ClipboardViewerForm()
 	delete _managedThisClipboardViewerHandleTextBox;
 }
 
+pu1ssoft::ClipboardViewerForm::!ClipboardViewerForm()
+{
+	delete _ncbv;
+}
+
 
 void pu1ssoft::ClipboardViewerForm::WndProc(MAN_MSG % message)
 {
-	
-		ncbv->def_clipboard_viewer_proc(WinTypesConverter::ManagedMsgToUnmanagedMsg(message));
-		switch ((int)message.Msg)
-		{
-		/*
-		case WM_CHANGECBCHAIN:
-			if (message.WParam == System::IntPtr(_native_next_clipboard_viewer_handle))
-			{
-				_native_next_clipboard_viewer_handle = (HWND)message.LParam.ToPointer();
-			}
-			else if (_native_next_clipboard_viewer_handle != NULL)
-			{
-				SendMessage(_native_first_clipboard_viewer_handle, (UINT)message.Msg, (WPARAM)message.WParam.ToPointer(), (LPARAM)message.LParam.ToPointer());
-			}
-			break;
-		case WM_DRAWCLIPBOARD:
-			System::Windows::Forms::MessageBox::Show("WM_DRAWCLIPBOARD");
-			if (_native_next_clipboard_viewer_handle != nullptr)
-			{
-				System::Windows::Forms::MessageBox::Show(message.Msg.ToString());
-				SendMessage((HWND)_native_next_clipboard_viewer_handle, (UINT)message.Msg, (WPARAM)message.WParam.ToPointer(), (LPARAM)message.LParam.ToPointer());
-			}
-			break;
-		case WM_DESTROY:
-			ChangeClipboardChain((HWND)this->Handle.ToPointer(), _native_next_clipboard_viewer_handle);
-			break;*/
-		default:
-			DefWndProc(message);
-			break;
-		}
-	
+	_ncbv->def_clipboard_viewer_proc(Convert<Message%, MSG>(message));
+	switch ((int)message.Msg)
+	{
+	default:
+		DefWndProc(message);
+		break;
+	}
 }
 
 
 
 pu1ssoft::ClipboardViewer::ClipboardViewer()
 {
-
 	_clipboardViewerForm = gcnew ClipboardViewerForm();
 	_clipboardViewerForm->Visible = false;
 	_clipboardViewerForm->Text = _clipboardViewerForm->Handle.ToString();
-
 	_clipboardViewerForm->Show();
-	
-	
-	
 }
 
 pu1ssoft::ClipboardViewer::~ClipboardViewer()
@@ -168,11 +145,6 @@ pu1ssoft::ClipboardViewer::~ClipboardViewer()
 	_clipboardViewerForm->Close();
 	delete _clipboardViewerForm;
 }
-
-
-
-
-
 
 
 void pu1ssoft::ClipboardViewerForm::OnKeyDown(System::Object ^sender, System::Windows::Forms::KeyEventArgs ^e)
