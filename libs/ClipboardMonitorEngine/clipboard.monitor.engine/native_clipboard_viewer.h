@@ -21,8 +21,8 @@ private:
 	HWND		_this_clipboard_viewer_handle;
 	HWND		_current_clipboard_owner_handle;
 	bool		_is_enabled;
-	DWORD		_system_last_error;
-	DWORD		_internal_last_error;
+	DWORD		_last_system_error;
+	DWORD		_last_internal_error;
 public:
 	/*
 	Native Clipboard Monitor 
