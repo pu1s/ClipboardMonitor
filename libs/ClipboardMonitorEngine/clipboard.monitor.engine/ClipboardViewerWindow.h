@@ -42,6 +42,7 @@ namespace pu1ssoft {
 		List<System::String^>^						lastErrorCollection;
 		ClipboardViewerWindowState					clipboardViewerWindowState;
 		System::IntPtr								nextClipboardViewerHandle;
+		HWND										native_next_clipboard_viever_handle;
 	private: System::Windows::Forms::Button^  button1;
 		
 
@@ -93,6 +94,7 @@ namespace pu1ssoft {
 		}
 	private:
 		void UpdateErrorCollection(System::Collections::Generic::List<System::String^>^ collection, System::String ^ newItem);
+		//void UpdateHandles()
 	};
 
 }

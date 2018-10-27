@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ClipboardViewerWindow.h"
 
-
+#pragma region Ctor
 /// <summary>
 /// ќсвободить все используемые ресурсы.
 /// </summary>
@@ -11,7 +11,8 @@ pu1ssoft::ClipboardViewerWindow::ClipboardViewerWindow(void):
 	lastSystemError(0),
 	lastErrorCollection(gcnew System::Collections::Generic::List<System::String^>()),
 	clipboardViewerWindowState(ClipboardViewerWindowState::Disabled),
-	nextClipboardViewerHandle(nullptr)
+	nextClipboardViewerHandle(nullptr),
+	native_next_clipboard_viever_handle(NULL)
 {
 	InitializeComponent();
 	//
@@ -27,12 +28,16 @@ pu1ssoft::ClipboardViewerWindow::~ClipboardViewerWindow()
 	}
 }
 
-inline void pu1ssoft::ClipboardViewerWindow::WndProc(Message % msg)
+
+#pragma endregion
+
+void pu1ssoft::ClipboardViewerWindow::WndProc(Message % msg)
 {
 	switch (msg.Msg)
 	{
 	case WM_CREATE:
-		System::Windows::Forms::MessageBox::Show("WM_CREATE");
+		nextClipboardViewerHandle = Convert<System::IntPtr, HWND>((HWND)SetClipboardViewer(Convert<HWND, System::IntPtr>(this->Handle)));
+		System::Windows::Forms::MessageBox::Show("WM_CREATE nch is: " +nextClipboardViewerHandle.ToString());
 		break;
 	default:
 		DefWndProc(msg);
@@ -40,7 +45,7 @@ inline void pu1ssoft::ClipboardViewerWindow::WndProc(Message % msg)
 	}
 }
 
-
+#pragma region ”же написано
 /// <summary>
 /// “ребуемый метод дл€ поддержки конструктора Ч не измен€йте 
 /// содержимое этого метода с помощью редактора кода.
@@ -126,7 +131,7 @@ void pu1ssoft::ClipboardViewerWindow::UpdateErrorCollection(System::Collections:
 	System::String^ endItemLine = "\r\n";
 	collection->Add(newItem + endItemLine);
 }
-
+#pragma endregion
 
 
 
