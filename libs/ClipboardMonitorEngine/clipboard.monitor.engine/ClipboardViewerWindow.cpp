@@ -10,7 +10,8 @@ pu1ssoft::ClipboardViewerWindow::ClipboardViewerWindow(void):
 	lastInternalError(0),
 	lastSystemError(0),
 	lastErrorCollection(gcnew System::Collections::Generic::List<System::String^>()),
-	clipboardViewerWindowState(ClipboardViewerWindowState::Disabled)
+	clipboardViewerWindowState(ClipboardViewerWindowState::Disabled),
+	nextClipboarViewerHandle(nullptr)
 {
 	InitializeComponent();
 	//
@@ -107,7 +108,7 @@ inline void pu1ssoft::ClipboardViewerWindow::InitializeComponent(void)
 
 }
 
-System::Void pu1ssoft::ClipboardViewerWindow::buttonUpdate_Click(System::Object ^ sender, System::EventArgs ^ e) {
+void pu1ssoft::ClipboardViewerWindow::buttonUpdate_Click(System::Object ^ sender, System::EventArgs ^ e) {
 	if (buttonUpdate->Text == L"Update")
 	{
 		buttonUpdate->Text = L"Updated";
@@ -119,5 +120,13 @@ System::Void pu1ssoft::ClipboardViewerWindow::buttonUpdate_Click(System::Object 
 	stringDiagnosticInfo = gcnew String((L"Window is created. Handle: ") + this->Handle.ToString() + gcnew String(L"\r\n"));
 	textBoxDiagnosticInfo->Text = stringDiagnosticInfo;
 }
+
+void pu1ssoft::ClipboardViewerWindow::UpdateErrorCollection(System::Collections::Generic::List<System::String^>^ collection, System::String ^ newItem)
+{
+	System::String^ endItemLine = "\r\n";
+	collection->Add(newItem + endItemLine);
+}
+
+
 
 

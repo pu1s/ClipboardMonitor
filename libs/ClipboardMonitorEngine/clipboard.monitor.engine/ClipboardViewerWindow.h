@@ -2,17 +2,16 @@
 #include "CLRConverters.h"
 #include "ClipboardViewerWindowState.h"
 
+using namespace System;
+using namespace System::ComponentModel;
+using namespace System::Collections;
+using namespace System::Collections::Generic;
+using namespace System::Windows::Forms;
+using namespace System::Data;
+using namespace System::Drawing;
+
 
 namespace pu1ssoft {
-
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Collections::Generic;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
-
 
 	/// <summary>
 	/// Clipboard View Window based on Microsoft Windows Forms Technology
@@ -42,7 +41,7 @@ namespace pu1ssoft {
 		System::Int32								lastInternalError;
 		List<System::String^>^						lastErrorCollection;
 		ClipboardViewerWindowState					clipboardViewerWindowState;
-
+		System::IntPtr								nextClipboarViewerHandle;
 	private: System::Windows::Forms::Button^  button1;
 		
 
@@ -72,5 +71,28 @@ namespace pu1ssoft {
 				return lastErrorCollection;
 			}
 		}
+		/// <summery>
+		/// Returned Next Clipboard Viewer Handle
+		/// </summery>
+		property System::IntPtr NextClipboardViewerHandle
+		{
+			System::IntPtr get(void)
+			{
+				return nextClipboarViewerHandle;
+			}
+		}
+		/// <summery>
+		/// Returned Clipboard Viewer Handle
+		/// </summery>
+		property System::IntPtr ClipboardViewerHandle
+		{
+			System::IntPtr get(void)
+			{
+				return this->Handle;
+			}
+		}
+	private:
+		void UpdateErrorCollection(System::Collections::Generic::List<System::String^>^ collection, System::String ^ newItem);
 	};
+
 }
