@@ -1,4 +1,6 @@
 #pragma once
+#include "CLRConverters.h"
+
 
 namespace pu1ssoft {
 
@@ -47,6 +49,9 @@ namespace pu1ssoft {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
+	protected:
+		void WndProc(Message% msg) override;
+
 #pragma region Windows Form Designer generated code
 		/// <summary>
 		/// “ребуемый метод дл€ поддержки конструктора Ч не измен€йте 
@@ -75,6 +80,7 @@ namespace pu1ssoft {
 			this->buttonUpdate->TabIndex = 1;
 			this->buttonUpdate->Text = L"Update";
 			this->buttonUpdate->UseVisualStyleBackColor = true;
+			this->buttonUpdate->Click += gcnew System::EventHandler(this, &ClipboardViewerWindow::buttonUpdate_Click);
 			// 
 			// ClipboardViewerWindow
 			// 
@@ -89,5 +95,16 @@ namespace pu1ssoft {
 
 		}
 #pragma endregion
+	private: System::Void buttonUpdate_Click(System::Object^  sender, System::EventArgs^  e) {
+		if (buttonUpdate->Text == L"Update")
+		{
+			buttonUpdate->Text = L"Updated";
+		}
+		else
+		{
+			buttonUpdate->Text = L"Update";
+		}
+
+	}
 	};
 }
