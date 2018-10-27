@@ -94,6 +94,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>user32.lib</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -130,16 +131,17 @@
   <ItemGroup>
     <ClInclude Include="ClipboardViewer.h" />
     <ClInclude Include="CLRConverters.h" />
-    <ClInclude Include="native_clipboard_data.h" />
+    <ClInclude Include="ClipboardViewerWindow.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="native_clipboard_viewer.h" />
-    <ClInclude Include="native_window.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="ClipboardViewer.cpp" />
-    <ClCompile Include="native_clipboard_data.cpp" />
+    <ClCompile Include="ClipboardViewerWindow.cpp" />
     <ClCompile Include="native_clipboard_viewer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -157,7 +159,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ClipboardViewerWindow.resx">
+      <DependentUpon>ClipboardViewerWindow.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
