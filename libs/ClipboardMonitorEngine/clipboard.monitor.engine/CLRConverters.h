@@ -1,8 +1,4 @@
 #pragma once
-
-#include <Windows.h>
-#include <WinUser.h>
-
 #using <System.dll>
 #using <System.Windows.Forms.dll>
 
@@ -12,25 +8,25 @@ using namespace System::Windows::Forms;
 
 namespace pu1ssoft
 {
-	template<typename From, typename To>
+	template<typename To, typename From>
 	static To Convert(From value) {
 		return To();
 	}
 
 	template<>
-	static HWND Convert<IntPtr, HWND>(IntPtr h)
+	static HWND Convert<HWND, IntPtr>(IntPtr h)
 	{
 		return (HWND)static_cast<HWND>(h.ToPointer());
 	}
 
 	template<>
-	static IntPtr Convert<HWND, IntPtr>(HWND hWnd)
+	static IntPtr Convert<IntPtr, HWND>(HWND hWnd)
 	{
 		return IntPtr(hWnd);
 	}
 
 	template<>
-	static MSG Convert<Message%, MSG>(Message% msg)
+	static MSG Convert<MSG, Message%>(Message% msg)
 	{
 		MSG m;
 		m.hwnd = (HWND)static_cast<HWND>(msg.HWnd.ToPointer());
@@ -41,7 +37,7 @@ namespace pu1ssoft
 	}
 
 	template<>
-	static Message Convert<MSG&, Message>(MSG& msg)
+	static Message Convert<Message, MSG&>(MSG& msg)
 	{
 		Message m_message;
 		m_message.Create(IntPtr(msg.hwnd), (int)msg.message, IntPtr((int)msg.wParam), IntPtr((long long)msg.lParam));
