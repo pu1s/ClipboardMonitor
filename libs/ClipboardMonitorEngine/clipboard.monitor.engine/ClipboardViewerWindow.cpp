@@ -11,7 +11,7 @@ pu1ssoft::ClipboardViewerWindow::ClipboardViewerWindow(void):
 	lastSystemError(0),
 	lastErrorCollection(gcnew System::Collections::Generic::List<System::String^>()),
 	clipboardViewerWindowState(ClipboardViewerWindowState::Disabled),
-	nextClipboarViewerHandle(nullptr)
+	nextClipboardViewerHandle(nullptr)
 {
 	InitializeComponent();
 	//

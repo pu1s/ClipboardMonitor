@@ -41,7 +41,7 @@ namespace pu1ssoft {
 		System::Int32								lastInternalError;
 		List<System::String^>^						lastErrorCollection;
 		ClipboardViewerWindowState					clipboardViewerWindowState;
-		System::IntPtr								nextClipboarViewerHandle;
+		System::IntPtr								nextClipboardViewerHandle;
 	private: System::Windows::Forms::Button^  button1;
 		
 
@@ -78,7 +78,7 @@ namespace pu1ssoft {
 		{
 			System::IntPtr get(void)
 			{
-				return nextClipboarViewerHandle;
+				return nextClipboardViewerHandle;
 			}
 		}
 		/// <summery>
