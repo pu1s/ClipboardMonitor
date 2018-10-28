@@ -20,7 +20,7 @@ namespace pu1ssoft {
 	{
 	public:
 		ClipboardViewerWindow(void);
-
+		void DisplayClipboardData();
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -31,7 +31,7 @@ namespace pu1ssoft {
 		// Clipboard Viewer Window GUI Variable
 		System::Windows::Forms::GroupBox^			groupBoxDiagnosticInfo;
 		System::Windows::Forms::Button^				buttonUpdate;
-		System::Windows::Forms::TextBox^			textBoxDiagnosticInfo;
+		System::Windows::Forms::RichTextBox^		textBoxDiagnosticInfo;
 		System::ComponentModel::Container^			components;
 		//
 		// Clipboard Viewer Window System Variable
@@ -41,12 +41,15 @@ namespace pu1ssoft {
 		System::Int32								lastInternalError;
 		List<System::String^>^						lastErrorCollection;
 		ClipboardViewerWindowState					clipboardViewerWindowState;
-		System::IntPtr								nextClipboardViewerHandle;
-		HWND										native_next_clipboard_viever_handle;
+		static System::IntPtr						nextClipboardViewerHandle;
+		//HWND										native_next_clipboard_viever_handle;
+		//static HWND ncbv;
+		int int_count = 0;
 	private: System::Windows::Forms::Button^  button1;
 		
 
 	protected:
+		void UpdateErrorOutput();
 		/// <summery>
 		/// Window procedure overrided
 		/// </summery>
@@ -60,7 +63,7 @@ namespace pu1ssoft {
 		void InitializeComponent(void);
 #pragma endregion
 	private:
-		System::Void buttonUpdate_Click(System::Object^  sender, System::EventArgs^  e);
+		
 	public:
 		/// <summery>
 		/// Returned Clipboard Viewer Error Collection
@@ -95,6 +98,10 @@ namespace pu1ssoft {
 	private:
 		void UpdateErrorCollection(System::Collections::Generic::List<System::String^>^ collection, System::String ^ newItem);
 		//void UpdateHandles()
+		
+	
+		
+	private: System::Void buttonUpdate_Click(System::Object^  sender, System::EventArgs^  e);
 	};
 
 }

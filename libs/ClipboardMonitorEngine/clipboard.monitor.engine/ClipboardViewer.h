@@ -24,7 +24,7 @@ namespace pu1ssoft
 		~ClipboardViewer()
 		{
 			cvw->Close();
-			delete cvw;
+			delete cvw; //cvw->Dispose();
 		}
 
 	private:
