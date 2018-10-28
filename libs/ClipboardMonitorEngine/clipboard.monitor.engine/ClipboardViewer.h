@@ -38,5 +38,5 @@ namespace pu1ssoft
 
 void pu1ssoft::ClipboardViewer::OnClipboardUpdated(System::Object ^sender, System::EventArgs ^e)
 {
-	throw gcnew System::NotImplementedException();
+	System::Windows::Forms::MessageBox::Show(cvw->NextClipboardViewerHandle.ToString());
 }

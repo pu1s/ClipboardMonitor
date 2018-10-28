@@ -106,7 +106,7 @@ namespace pu1ssoft {
 	public:
 		event EventHandler^ ClipboardUpdated;
 	private:
-		void OnClipboardUpdated(System::Object^  sender, System::EventArgs^  e);
+		void OnClipboardUpdated();
 	};
 
 }

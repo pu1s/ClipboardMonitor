@@ -64,7 +64,7 @@ void pu1ssoft::ClipboardViewerWindow::WndProc(Message % msg)
 	case WM_CLIPBOARDUPDATE:
 		break;
 	case WM_DRAWCLIPBOARD:
-		OnClipboardUpdated(this, EventArgs::Empty);
+		OnClipboardUpdated();
 		DisplayClipboardData();
 		if (nextClipboardViewerHandle != System::IntPtr::Zero)
 		{
@@ -182,9 +182,9 @@ void pu1ssoft::ClipboardViewerWindow::UpdateErrorCollection(System::Collections:
 	stringDiagnosticInfo += gcnew String((L"Last Error: ") + this->lastSystemError.ToString() + gcnew String(L"\r\n"));
 	textBoxDiagnosticInfo->Text = stringDiagnosticInfo;
 }
- void pu1ssoft::ClipboardViewerWindow::OnClipboardUpdated(System::Object ^ sender, System::EventArgs ^ e)
+ void pu1ssoft::ClipboardViewerWindow::OnClipboardUpdated()
  {
-	 e->Empty; //TODO: Начать от сюда
+	 ClipboardUpdated(this, System::EventArgs::Empty);
  }
 #pragma endregion
 
