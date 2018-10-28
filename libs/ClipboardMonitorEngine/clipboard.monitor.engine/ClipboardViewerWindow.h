@@ -101,7 +101,12 @@ namespace pu1ssoft {
 		
 	
 		
-	private: System::Void buttonUpdate_Click(System::Object^  sender, System::EventArgs^  e);
+	private: 
+		System::Void buttonUpdate_Click(System::Object^  sender, System::EventArgs^  e);
+	public:
+		event EventHandler^ ClipboardUpdated;
+	private:
+		void OnClipboardUpdated(System::Object^  sender, System::EventArgs^  e);
 	};
 
 }
