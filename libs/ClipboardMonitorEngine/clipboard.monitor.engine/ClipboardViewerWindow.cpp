@@ -101,7 +101,6 @@ void pu1ssoft::ClipboardViewerWindow::WndProc(Message % msg)
 inline void pu1ssoft::ClipboardViewerWindow::InitializeComponent(void) 
 {
 	this->groupBoxDiagnosticInfo = (gcnew System::Windows::Forms::GroupBox());
-	this->button1 = (gcnew System::Windows::Forms::Button());
 	this->textBoxDiagnosticInfo = (gcnew System::Windows::Forms::RichTextBox());
 	this->buttonUpdate = (gcnew System::Windows::Forms::Button());
 	this->groupBoxDiagnosticInfo->SuspendLayout();
@@ -109,7 +108,6 @@ inline void pu1ssoft::ClipboardViewerWindow::InitializeComponent(void)
 	// 
 	// groupBoxDiagnosticInfo
 	// 
-	this->groupBoxDiagnosticInfo->Controls->Add(this->button1);
 	this->groupBoxDiagnosticInfo->Controls->Add(this->textBoxDiagnosticInfo);
 	this->groupBoxDiagnosticInfo->Location = System::Drawing::Point(13, 13);
 	this->groupBoxDiagnosticInfo->Name = L"groupBoxDiagnosticInfo";
@@ -118,23 +116,14 @@ inline void pu1ssoft::ClipboardViewerWindow::InitializeComponent(void)
 	this->groupBoxDiagnosticInfo->TabStop = false;
 	this->groupBoxDiagnosticInfo->Text = L"Diagnostic info:";
 	// 
-	// button1
-	// 
-	this->button1->Location = System::Drawing::Point(7, 196);
-	this->button1->Name = L"button1";
-	this->button1->Size = System::Drawing::Size(75, 23);
-	this->button1->TabIndex = 1;
-	this->button1->Text = L"button1";
-	this->button1->UseVisualStyleBackColor = true;
-	// 
 	// textBoxDiagnosticInfo
 	// 
 	this->textBoxDiagnosticInfo->Dock = System::Windows::Forms::DockStyle::Top;
 	this->textBoxDiagnosticInfo->Location = System::Drawing::Point(3, 16);
-	this->textBoxDiagnosticInfo->Multiline = true;
 	this->textBoxDiagnosticInfo->Name = L"textBoxDiagnosticInfo";
 	this->textBoxDiagnosticInfo->Size = System::Drawing::Size(557, 168);
 	this->textBoxDiagnosticInfo->TabIndex = 0;
+	this->textBoxDiagnosticInfo->Text = L"";
 	// 
 	// buttonUpdate
 	// 
@@ -156,7 +145,6 @@ inline void pu1ssoft::ClipboardViewerWindow::InitializeComponent(void)
 	this->Name = L"ClipboardViewerWindow";
 	this->Text = L"ClipboardViewerWindow";
 	this->groupBoxDiagnosticInfo->ResumeLayout(false);
-	this->groupBoxDiagnosticInfo->PerformLayout();
 	this->ResumeLayout(false);
 
 }

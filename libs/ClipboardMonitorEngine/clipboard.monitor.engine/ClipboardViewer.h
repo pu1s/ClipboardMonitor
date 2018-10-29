@@ -16,27 +16,18 @@ namespace pu1ssoft
 	public ref class ClipboardViewer
 	{
 	public:
-		ClipboardViewer()
-		{
-			cvw = gcnew ClipboardViewerWindow();
-			cvw->ClipboardUpdated += gcnew System::EventHandler(this, &pu1ssoft::ClipboardViewer::OnClipboardUpdated);
-			cvw->Show();
-		}
-		~ClipboardViewer()
-		{
-			cvw->Close();
-			
-			delete cvw; //cvw->Dispose();
-		}
+		ClipboardViewer();
+		~ClipboardViewer();
 
 	private:
 		ClipboardViewerWindow ^ cvw;
 		void OnClipboardUpdated(System::Object ^sender, System::EventArgs ^e);
+	public:
+
 	};
 }
 
 
-void pu1ssoft::ClipboardViewer::OnClipboardUpdated(System::Object ^sender, System::EventArgs ^e)
-{
-	System::Windows::Forms::MessageBox::Show(cvw->NextClipboardViewerHandle.ToString());
-}
+
+
+

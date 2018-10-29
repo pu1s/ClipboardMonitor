@@ -45,7 +45,7 @@ namespace pu1ssoft {
 		//HWND										native_next_clipboard_viever_handle;
 		//static HWND ncbv;
 		int int_count = 0;
-	private: System::Windows::Forms::Button^  button1;
+
 		
 
 	protected:
