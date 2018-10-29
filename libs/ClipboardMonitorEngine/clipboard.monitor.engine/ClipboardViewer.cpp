@@ -5,12 +5,15 @@ namespace pu1ssoft
 {
 	ClipboardViewer::ClipboardViewer()
 	{
+		helper = new native_clipboard_helper();
+		owner_info = new WIN32_CLIPBOARD_OWNER_INFO();
 		cvw = gcnew ClipboardViewerWindow();
 		cvw->ClipboardUpdated += gcnew System::EventHandler(this, &pu1ssoft::ClipboardViewer::OnClipboardUpdated);
 		//cvw->AllowTransparency = true;
 		cvw->Opacity = 0;
 		cvw->ShowInTaskbar = true;
 		cvw->Show();
+		helper->get_win32_clipboard_owner_info(owner_info);
 	}
 	ClipboardViewer::~ClipboardViewer()
 	{
