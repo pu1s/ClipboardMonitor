@@ -17,12 +17,14 @@ namespace pu1ssoft
 	public value struct ClipboardOwnerInfo
 	{
 	public:
-		System::String^		ProcessName;
-		System::IntPtr		ProcessHandle;
-		System::Int32		ProcessId;
-		System::String^		WindowName;
-		System::IntPtr		MainWindowHandle;
-		System::DateTime	DateTimeStamp;
+		System::String^							ProcessName;
+		System::Diagnostics::ProcessModule^		ProcessMainModule;
+		System::IntPtr							ProcessHandle;
+		System::Int32							ProcessId;
+		System::String^							WindowName;
+		System::Drawing::Icon^					WindowIcon;
+		System::IntPtr							MainWindowHandle;
+		System::DateTime						DateTimeStamp;
 	};
 
 	void GetClipboardOwnerInfo(ClipboardOwnerInfo% clipboardOwnerInfo, System::Int32 % lastError);

@@ -6,10 +6,13 @@ void pu1ssoft::GetClipboardOwnerInfo(ClipboardOwnerInfo % clipboardOwnerInfo, Sy
 {
 	HWND	currentClipboardOwnerHandle;
 	HANDLE	processClipboardOwnerHandle;
+
 	DWORD	processClipboardOwnerId;
 	LPWSTR	processFileName;
+	System::Drawing::Icon^ windowClipboardOwnerIcon;
 	//
 	Process^ ProcessClipboardOwner = gcnew Process(); 
+	
 	//
 	currentClipboardOwnerHandle = (HWND)GetClipboardOwner();							// take handle clipboard owner
 	GetWindowThreadProcessId(currentClipboardOwnerHandle, &processClipboardOwnerId);	// take PID
@@ -22,4 +25,5 @@ void pu1ssoft::GetClipboardOwnerInfo(ClipboardOwnerInfo % clipboardOwnerInfo, Sy
 	clipboardOwnerInfo.ProcessId			= ProcessClipboardOwner->Id;
 	clipboardOwnerInfo.MainWindowHandle		= ProcessClipboardOwner->MainWindowHandle;
 	clipboardOwnerInfo.WindowName			= ProcessClipboardOwner->MainWindowTitle;
+	clipboardOwnerInfo.ProcessMainModule	= ProcessClipboardOwner->MainModule;
 }
