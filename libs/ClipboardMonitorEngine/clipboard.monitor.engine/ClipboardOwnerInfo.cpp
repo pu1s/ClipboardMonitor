@@ -43,5 +43,7 @@ System::String ^ pu1ssoft::ClipboardOwnerInfo::ToString()
 	System::String^ returnValue;
 	returnValue += gcnew String(L"Process Handle:") + del;
 	returnValue += this->ProcessHandle + newLine;
+	//TODO: Not impl
+	//
 	return returnValue;
 }
