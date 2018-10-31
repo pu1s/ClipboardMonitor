@@ -25,6 +25,9 @@ namespace pu1ssoft
 		System::Drawing::Icon^					WindowIcon;
 		System::IntPtr							MainWindowHandle;
 		System::DateTime						DateTimeStamp;
+	public:
+		System::String^ ToString() override;
+		
 	};
 
 	void GetClipboardOwnerInfo(ClipboardOwnerInfo% clipboardOwnerInfo, System::Int32 % lastError);
