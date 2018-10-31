@@ -1,6 +1,7 @@
 #pragma once
-#include "CLRConverters.h"
+#include "CustomMarshal.h"
 #include "ClipboardViewerWindowState.h"
+
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -9,7 +10,7 @@ using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
-
+using namespace System::Diagnostics;
 
 namespace pu1ssoft {
 
@@ -42,9 +43,7 @@ namespace pu1ssoft {
 		List<System::String^>^						lastErrorCollection;
 		ClipboardViewerWindowState					clipboardViewerWindowState;
 		static System::IntPtr						nextClipboardViewerHandle;
-		//HWND										native_next_clipboard_viever_handle;
-		//static HWND ncbv;
-		int int_count = 0;
+		
 
 		
 

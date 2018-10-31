@@ -134,7 +134,7 @@
     <ClInclude Include="ClipboardViewer.h" />
     <ClInclude Include="ClipboardViewerState.h" />
     <ClInclude Include="ClipboardViewerWindowState.h" />
-    <ClInclude Include="CLRConverters.h" />
+    <ClInclude Include="CustomMarshal.h" />
     <ClInclude Include="ClipboardViewerWindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ClipboardOwnerInfo.cpp" />
     <ClCompile Include="ClipboardViewer.cpp" />
     <ClCompile Include="ClipboardViewerWindow.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -9,24 +9,24 @@ using namespace System::Windows::Forms;
 namespace pu1ssoft
 {
 	template<typename To, typename From>
-	static To Convert(From value) {
+	static To MarshalAs(From value) {
 		return To();
 	}
 
 	template<>
-	static HWND Convert<HWND, IntPtr>(IntPtr h)
+	static HWND MarshalAs<HWND, IntPtr>(IntPtr h)
 	{
 		return (HWND)static_cast<HWND>(h.ToPointer());
 	}
 
 	template<>
-	static IntPtr Convert<IntPtr, HWND>(HWND hWnd)
+	static IntPtr MarshalAs<IntPtr, HWND>(HWND hWnd)
 	{
 		return IntPtr(hWnd);
 	}
 
 	template<>
-	static MSG Convert<MSG, Message%>(Message% msg)
+	static MSG MarshalAs<MSG, Message%>(Message% msg)
 	{
 		MSG m;
 		m.hwnd = (HWND)static_cast<HWND>(msg.HWnd.ToPointer());
@@ -37,7 +37,7 @@ namespace pu1ssoft
 	}
 
 	template<>
-	static Message Convert<Message, MSG&>(MSG& msg)
+	static Message MarshalAs<Message, MSG&>(MSG& msg)
 	{
 		Message m_message;
 		m_message.Create(IntPtr(msg.hwnd), (int)msg.message, IntPtr((int)msg.wParam), IntPtr((long long)msg.lParam));

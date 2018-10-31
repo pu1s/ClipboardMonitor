@@ -11,14 +11,14 @@ pu1ssoft::ClipboardViewerWindow::ClipboardViewerWindow(void):
 	lastSystemError(0),
 	lastErrorCollection(gcnew System::Collections::Generic::List<System::String^>()),
 	clipboardViewerWindowState(ClipboardViewerWindowState::Disabled)
-	//nextClipboardViewerHandle(nullptr)//,
-	//native_next_clipboard_viever_handle(NULL)
+	//, 
+	
 {
 	InitializeComponent();
 	//
 	//TODO: добавьте код конструктора
 	//
-	nextClipboardViewerHandle = Convert<System::IntPtr, HWND>((HWND)SetClipboardViewer((HWND)this->Handle.ToPointer()));
+	nextClipboardViewerHandle = MarshalAs<System::IntPtr, HWND>((HWND)SetClipboardViewer((HWND)this->Handle.ToPointer()));
 	if (nextClipboardViewerHandle == System::IntPtr::Zero)
 		lastSystemError = System::Int32(GetLastError());
 	
@@ -33,7 +33,7 @@ void pu1ssoft::ClipboardViewerWindow::DisplayClipboardData()
 
 pu1ssoft::ClipboardViewerWindow::~ClipboardViewerWindow()
 {
-	ChangeClipboardChain((HWND)Convert<HWND, System::IntPtr>(this->Handle), (HWND)Convert<HWND, System::IntPtr>(NextClipboardViewerHandle));
+	ChangeClipboardChain((HWND)MarshalAs<HWND, System::IntPtr>(this->Handle), (HWND)MarshalAs<HWND, System::IntPtr>(NextClipboardViewerHandle));
 	if (components)
 	{
 		delete components;
@@ -68,18 +68,20 @@ void pu1ssoft::ClipboardViewerWindow::WndProc(Message % msg)
 		DisplayClipboardData();
 		if (nextClipboardViewerHandle != System::IntPtr::Zero)
 		{
-			SendMessage((HWND)Convert<HWND, System::IntPtr>(nextClipboardViewerHandle), (UINT)msg.Msg, (WPARAM)msg.WParam.ToPointer(), (LPARAM)msg.LParam.ToPointer());
+			SendMessage((HWND)MarshalAs<HWND, System::IntPtr>(nextClipboardViewerHandle), (UINT)msg.Msg, (WPARAM)msg.WParam.ToPointer(), (LPARAM)msg.LParam.ToPointer());
 		}
 		break;
 	case WM_PAINTCLIPBOARD:
 
 		break;
+	case WM_GETTEXT:
+		break;
 	case WM_CHANGECBCHAIN:
-		if ((HWND)msg.WParam.ToPointer() == (HWND)Convert<HWND, System::IntPtr>(nextClipboardViewerHandle))
+		if ((HWND)msg.WParam.ToPointer() == (HWND)MarshalAs<HWND, System::IntPtr>(nextClipboardViewerHandle))
 			nextClipboardViewerHandle = msg.WParam;
 		else
 		{
-			SendMessage((HWND)Convert<HWND, System::IntPtr>(msg.HWnd), (UINT)msg.Msg, (WPARAM)msg.WParam.ToPointer(), (LPARAM)msg.LParam.ToPointer());
+			SendMessage((HWND)MarshalAs<HWND, System::IntPtr>(msg.HWnd), (UINT)msg.Msg, (WPARAM)msg.WParam.ToPointer(), (LPARAM)msg.LParam.ToPointer());
 		}
 		break;
 	case WM_DESTROY:
@@ -172,6 +174,8 @@ void pu1ssoft::ClipboardViewerWindow::UpdateErrorCollection(System::Collections:
 }
  void pu1ssoft::ClipboardViewerWindow::OnClipboardUpdated()
  {
+	
+	 
 	 ClipboardUpdated(this, System::EventArgs::Empty);
  }
 #pragma endregion

@@ -24,9 +24,6 @@
     <ClInclude Include="ClipboardViewer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CLRConverters.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="ClipboardViewerWindow.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -34,6 +31,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ClipboardViewerWindowState.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomMarshal.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ClipboardOwnerInfo.h">
@@ -51,6 +51,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="ClipboardViewerWindow.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipboardOwnerInfo.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
