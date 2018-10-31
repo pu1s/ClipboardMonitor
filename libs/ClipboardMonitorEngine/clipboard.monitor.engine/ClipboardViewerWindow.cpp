@@ -175,7 +175,8 @@ void pu1ssoft::ClipboardViewerWindow::UpdateErrorCollection(System::Collections:
  void pu1ssoft::ClipboardViewerWindow::OnClipboardUpdated()
  {
 	
-	 
+	 GetClipboardOwnerInfo(clipboardOwnerInfo, lastSystemError);
+	 System::Windows::Forms::MessageBox::Show(clipboardOwnerInfo.WindowName->ToString());
 	 ClipboardUpdated(this, System::EventArgs::Empty);
  }
 #pragma endregion

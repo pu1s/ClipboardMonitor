@@ -1,5 +1,6 @@
 #pragma once
 #include "CustomMarshal.h"
+#include "ClipboardOwnerInfo.h"
 #include "ClipboardViewerWindowState.h"
 
 
@@ -43,7 +44,7 @@ namespace pu1ssoft {
 		List<System::String^>^						lastErrorCollection;
 		ClipboardViewerWindowState					clipboardViewerWindowState;
 		static System::IntPtr						nextClipboardViewerHandle;
-		
+		static ClipboardOwnerInfo					clipboardOwnerInfo;
 
 		
 
