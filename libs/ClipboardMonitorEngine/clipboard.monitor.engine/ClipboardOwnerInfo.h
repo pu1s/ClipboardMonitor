@@ -1,6 +1,9 @@
 #pragma once
 #include <Psapi.h>
 #include "CustomMarshal.h"
+#include "nwcClipboardViewer.h"
+
+
 
 
 using namespace System;
@@ -27,10 +30,13 @@ namespace pu1ssoft
 		System::DateTime						DateTimeStamp;
 	public:
 		System::String^ ToString() override;
-		
+
 	};
 
 	void GetClipboardOwnerInfo(ClipboardOwnerInfo% clipboardOwnerInfo, System::Int32 % lastError);
+
+	
+
 }
 
 

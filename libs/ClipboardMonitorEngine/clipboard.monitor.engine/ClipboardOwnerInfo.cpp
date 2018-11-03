@@ -36,6 +36,9 @@ void pu1ssoft::GetClipboardOwnerInfo(ClipboardOwnerInfo % clipboardOwnerInfo, Sy
 	}
 }
 
+
+
+
 System::String ^ pu1ssoft::ClipboardOwnerInfo::ToString()
 {
 	System::String^ del = L" ";
@@ -47,3 +50,4 @@ System::String ^ pu1ssoft::ClipboardOwnerInfo::ToString()
 	//
 	return returnValue;
 }
+

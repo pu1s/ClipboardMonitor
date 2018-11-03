@@ -1,0 +1,1 @@
+#include "../clipboard.monitor.engine/stdafx.h"

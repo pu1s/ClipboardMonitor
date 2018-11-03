@@ -4,6 +4,7 @@
 #include "ClipboardViewerWindowState.h"
 
 
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
