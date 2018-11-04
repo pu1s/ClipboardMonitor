@@ -19,10 +19,12 @@ struct tagWin32_WindowInfo
 }*WIN32_WINDOW_INFO_PTR, WIN32_WINDOW_INFO;
 
 typedef
-struct tagWin32_SystemLastError
+struct tagWin32_LastSystemError
 {
 	DWORD  system_last_error;
-}*WIN32_SYSTEM_LAST_ERROR_PTR, WIN32_SYSTEM_LAST_ERROR;
+}*WIN32_LAST_SYSTEM_ERROR_PTR, WIN32_LAST_SYSTEM_ERROR;
 
 void __stdcall get_window_info(HWND hwnd, WIN32_WINDOW_INFO_PTR w_i) noexcept;
+
+void __stdcall get_last_system_error(WIN32_LAST_SYSTEM_ERROR_PTR last_system_error_struct) noexcept;
 

@@ -152,14 +152,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ClipbardViewer.h" />
+    <ClInclude Include="ClipboardViewerAltWndProc.h" />
     <ClInclude Include="ClipboardViewerInfo.h" />
+    <ClInclude Include="ClipboardViewerState.h" />
     <ClInclude Include="D3DWindowScope.h" />
-    <ClInclude Include="Global.h" />
+    <ClInclude Include="ClipboardViewerGlobal.h" />
     <ClInclude Include="native_clipboard_window_viewer.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClipbardViewer.cpp" />
+    <ClCompile Include="ClipboardViewerAltWndProc.cpp" />
     <ClCompile Include="ClipboardViewerInfo.cpp" />
     <ClCompile Include="ConsoleAppW32.cpp" />
     <ClCompile Include="native_clipboard_window_viewer.cpp" />

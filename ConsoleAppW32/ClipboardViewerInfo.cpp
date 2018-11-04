@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <xstring>
-#include "Global.h"
+#include "ClipboardViewerGlobal.h"
 #include "ClipboardViewerInfo.h"
 
 void __stdcall get_window_info(HWND hwnd, WIN32_WINDOW_INFO_PTR w_i) noexcept
@@ -28,4 +28,10 @@ void __stdcall get_window_info(HWND hwnd, WIN32_WINDOW_INFO_PTR w_i) noexcept
 #endif // CONSOLE_DEBUG
 
 	
+}
+
+void __stdcall get_last_system_error(WIN32_LAST_SYSTEM_ERROR_PTR last_system_error_struct) noexcept
+{
+	if (last_system_error_struct == nullptr) return;
+	else last_system_error_struct->system_last_error = GetLastError(); return;
 }
