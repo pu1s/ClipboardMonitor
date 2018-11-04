@@ -1,38 +1,43 @@
 #include "pch.h"
 #include "ClipbardViewer.h"
 
-clipboard_viewer::clipboard_viewer()
+pu1ssoft::clipboard_viewer::clipboard_viewer() 
+	:
+	p_window_info(new WIN32_WINDOW_INFO()),
+	p_clipboard_owner_info(new WIN32_CLIPBOARD_OWNER_INFO()),
+	p_system_last_error(new WIN32_SYSTEM_LAST_ERROR())
 {
+	
 }
 
-int __stdcall clipboard_viewer::WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, int nWinMode)
+int __stdcall pu1ssoft::clipboard_viewer::WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, int nWinMode)
 {
-	LPCWSTR szWinName = L"ClipboardViewerWindow";				//Произвольное имя класса главного окна
-	LPCWSTR szTitle = L"Clipboard Viewer";						//Произвольный заголовок окна
-	MSG msg;													//Структура msg типа MSG для получения сообщений Windows
-	WNDCLASS wc;												//Структура wc типа WNDCLASS для задания 
-																//характеристик окна
+	LPCWSTR szWinName = L"ClipboardViewerWindow";				// Произвольное имя класса главного окна
+	LPCWSTR szTitle = L"Clipboard Viewer";						// Произвольный заголовок окна
+	MSG msg;													// Структура msg типа MSG для получения сообщений Windows
+	WNDCLASS wc;												// Структура wc типа WNDCLASS для задания характеристик окна
+																
 	/*Заполнение структуры wc типа WNDCLASS для описания класса главного окна*/
-	ZeroMemory(&wc, sizeof(wc));								//Обнуление всех членов структуры wc
+	ZeroMemory(&wc, sizeof(wc));								// Обнуление всех членов структуры wc
 	wc.hInstance = hInstance;                                   // Дескриптор приложения
 	wc.lpszClassName = (LPCWSTR)szWinName;                      // Имя класса окна
 	wc.lpfnWndProc = &WindowFunc;								// Определение оконной функции 
 	wc.style = 0;                                               // Стиль по умолчанию
-	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);					//Стандартная пиктограмма
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);					//Стандартный курсор мыши
+	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);					// Стандартная пиктограмма
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);					// Стандартный курсор мыши
 	wc.hbrBackground = GetStockBrush(WHITE_BRUSH);				// Белый фон окна
 	wc.lpszMenuName = NULL;										// Без меню
 	wc.cbClsExtra = 0;                                          // Без дополнительной информации
 	wc.cbWndExtra = 0;                                          // Без дополнительной информации
 
 	/*Регистрация класса главного окна*/
-	if (!RegisterClass(&wc))                                    //Если класс окна не регистрируется
+	if (!RegisterClass(&wc))                                    // Если класс окна не регистрируется
 	{															// выводим сообщение и заканчиваем выполнение программы
 		MessageBox(NULL, L"Окно нерегестрируется", L"Ошибка", MB_OK);
 		return 1;
 	}                                                           // возвращаем код ошибки
 /*Создание главного окна и отображение его на мониторе*/
-	HWND hwnd = CreateWindow(									//Вызов функции API для создания ок-на
+	HWND hwnd = CreateWindow(									// Вызов функции API для создания ок-на
 		(LPCWSTR)szWinName,                                     // имя класса главного окна
 		(LPCWSTR)szTitle,                                       // заголовок окна
 		WS_OVERLAPPEDWINDOW,									// Стиль окна 
@@ -53,7 +58,7 @@ int __stdcall clipboard_viewer::WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst
 	return 0;
 }
 
-LRESULT clipboard_viewer::WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT pu1ssoft::clipboard_viewer::WindowFunc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	
 	switch (message)											// выбор по значению сообщения (message)
