@@ -41,10 +41,13 @@
     <ClCompile Include="ConsoleAppW32.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="native_clipboard_window_viewer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
     <ClCompile Include="ClipboardViewerInfo.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="native_clipboard_window_viewer.cpp">
+    <ClCompile Include="ClipbardViewer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

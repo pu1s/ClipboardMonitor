@@ -8,13 +8,6 @@ struct tagWin32_ClipboardOwnerInfo
 	HWND	clipboard_owner_window_handle;	// handle of current clipboard viewer window
 }*WIN32_CLIPBOARD_OWNER_INFO_PTR;
 
-typedef
-struct tagWin32_WindowOwnerInfo
-{
-	DWORD	proc_id;						// process id
-	DWORD	thread_id;						// thread of process id
-	HWND	owner_main__window_handle;		// handle of current clipboard viewer window
-}*WIN32_WINDOWOWNER_INFO_PTR;
 
 typedef
 struct tagWin32_WindowInfo
