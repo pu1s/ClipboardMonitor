@@ -155,6 +155,7 @@
     <ClInclude Include="ClipboardViewerAltWndProc.h" />
     <ClInclude Include="ClipboardViewerInfo.h" />
     <ClInclude Include="ClipboardViewerState.h" />
+    <ClInclude Include="ClipboardViewerEx.h" />
     <ClInclude Include="D3DWindowScope.h" />
     <ClInclude Include="ClipboardViewerGlobal.h" />
     <ClInclude Include="native_clipboard_window_viewer.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="ClipbardViewer.cpp" />
     <ClCompile Include="ClipboardViewerAltWndProc.cpp" />
     <ClCompile Include="ClipboardViewerInfo.cpp" />
+    <ClCompile Include="ClipboardViewerEx.cpp" />
     <ClCompile Include="ConsoleAppW32.cpp" />
     <ClCompile Include="native_clipboard_window_viewer.cpp" />
     <ClCompile Include="pch.cpp">
