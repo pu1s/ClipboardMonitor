@@ -40,7 +40,7 @@ int __stdcall pu1ssoft::clipboard_viewer::WinMain(HINSTANCE hInstance, HINSTANCE
 	wc.style = 0;                                               // Стиль по умолчанию
 	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);					// Стандартная пиктограмма
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);					// Стандартный курсор мыши
-	wc.hbrBackground = GetStockBrush(WHITE_BRUSH);				// Белый фон окна
+	wc.hbrBackground = GetStockBrush(BLACK_BRUSH);				// Черный фон окна
 	wc.lpszMenuName = NULL;										// Без меню
 	wc.cbClsExtra = 0;                                          // Без дополнительной информации
 	wc.cbWndExtra = 0;                                          // Без дополнительной информации
@@ -64,7 +64,7 @@ int __stdcall pu1ssoft::clipboard_viewer::WinMain(HINSTANCE hInstance, HINSTANCE
 		NULL,                                                   // Без меню
 		hInstance,                                              // Дескриптор приложения
 		NULL);                                                  // Без дополнительных аргументов
-	ShowWindow(hwnd, SW_SHOWNORMAL);							//  Вызов функции API
+	ShowWindow(hwnd, SW_SHOWNORMAL);							// Вызов функции API
 																// для отображения окна 
 	/*Организация цикла обнаружения сообщений*/
 	while (GetMessage(&msg, NULL, 0, 0))						// Если есть сообщение, передать его
