@@ -17,17 +17,25 @@ using namespace pu1ssoft;
 
 namespace pu1ssoft
 {
-
+	typedef
 	class ClipboardViewerEx
 	{
 	private:
-		static HINSTANCE	_hInstance;
-		HWND		_hWnd;
+		HINSTANCE			_hInstance;
+		HWND				_hWnd;
+		bool				_isWindowVisible;
+
+		int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst,
+			LPSTR lpszArgs, int nWinMode);
+
+		static LRESULT WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 	public:
 		ClipboardViewerEx();
 		~ClipboardViewerEx();
+
+		bool __stdcall Create(void) noexcept;
 		
-	};
+	}CLIPBOARDVIEWEREX, *CLIPBOARDVIEWEREX_PTR;
 }
 
 
