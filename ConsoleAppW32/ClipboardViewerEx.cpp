@@ -1,13 +1,11 @@
 #include "ClipboardViewerEx.h"
 
-stdx::ClipboardViewerEx::ClipboardViewerEx()
-	: _hWnd(nullptr)
+pu1ssoft::ClipboardViewerEx::ClipboardViewerEx()
 {
 }
 
 stdx::ClipboardViewerEx::~ClipboardViewerEx()
 {
-	_hWnd = nullptr;
 }
 
 void stdx::ClipboardViewerEx::CreateWindowViewer(HINSTANCE hInstance, wstring & window_name, wstring & window_title,  bool is_visible, WNDPROC wndproc, HWND & handle) noexcept
