@@ -1,11 +1,12 @@
 #pragma once
 
-namespace pu1ssoft
+namespace stdx
 {
 	typedef
 	enum class ClipboardViewerStateEnum
 	{
-		Disabled = 0,
-		Enabled,
+		Unknown = 0,
+		Created,
+		Destroed
 	}CLIPBOARDVIEWERSTATE;
 }

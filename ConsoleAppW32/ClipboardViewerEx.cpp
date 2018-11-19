@@ -1,13 +1,16 @@
 #include "ClipboardViewerEx.h"
 
 stdx::ClipboardViewerEx::ClipboardViewerEx()
-	: _hWnd(nullptr)
+	: _hWnd(nullptr), _hWndNextClipboardViewer(nullptr), _pLastError(nullptr), _mState(stdx::CLIPBOARDVIEWERSTATE::Unknown)
 {
+	_pLastError = new long long(0);
 }
 
 stdx::ClipboardViewerEx::~ClipboardViewerEx()
 {
 	_hWnd = nullptr;
+	_hWndNextClipboardViewer = nullptr;
+	delete _pLastError;
 }
 
 stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_name, LPCWSTR window_title, WNDPROC wndproc)
@@ -35,6 +38,7 @@ stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_n
 	if (!RegisterClass(&_wc))                                    // Если класс окна не регистрируется
 	{															// выводим сообщение и заканчиваем выполнение программы
 		MessageBox(NULL, L"Окно нерегестрируется", L"Ошибка", MB_OK);
+		
 		return;
 	}                                                           // возвращаем код ошибки
 	/*Создание главного окна и отображение его на мониторе*/
@@ -50,12 +54,23 @@ stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_n
 		NULL,                                                   // Без меню
 		hInstance,                                              // Дескриптор приложения
 		NULL);
+	if (!_hWnd)
+	{
+		*_pLastError = GetLastError(); 
+
+		return;
+	}
+	else
+	{
+
+		return;
+	}
 	
 }
 
 
 
-bool stdx::ClipboardViewerEx::DestroyWindowViewer(void) noexcept
+bool stdx::ClipboardViewerEx::DestroyClipboardViewerWindow(void) noexcept
 {
 	if (DestroyWindow(_hWnd))
 	{
@@ -67,12 +82,17 @@ bool stdx::ClipboardViewerEx::DestroyWindowViewer(void) noexcept
 	}
 }
 
-HWND stdx::ClipboardViewerEx::GetWindowViewerHandle(void) noexcept
+HWND stdx::ClipboardViewerEx::GetClipboardViewerWindowHandle(void) noexcept
 {
 	return _hWnd;
 }
 
-bool stdx::ClipboardViewerEx::ShowWindowViewer(bool is_visible) noexcept
+HWND stdx::ClipboardViewerEx::GetNextClipboardViewerWindowHandle(void) noexcept
+{
+	return _hWndNextClipboardViewer;
+}
+
+bool stdx::ClipboardViewerEx::ShowClipboardViewerWindow(bool is_visible) noexcept
 {
 	if (is_visible)
 	{
@@ -96,6 +116,11 @@ bool stdx::ClipboardViewerEx::ShowWindowViewer(bool is_visible) noexcept
 			return false;
 		}
 	}
+}
+
+long long stdx::ClipboardViewerEx::GetClipboardViewerLastError(void) noexcept
+{
+	return *_pLastError;
 }
 
 

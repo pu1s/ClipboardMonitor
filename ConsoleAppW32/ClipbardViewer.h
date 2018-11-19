@@ -38,7 +38,7 @@ namespace pu1ssoft
 		WIN32_WINDOW_INFO_PTR			p_window_info;				// pointer to window info struct
 		WIN32_CLIPBOARD_OWNER_INFO_PTR	p_clipboard_owner_info;		// pointer to window clipboard owner info struct 												
 		WIN32_LAST_SYSTEM_ERROR_PTR		p_last_system_error;		// pointer to last system error info struct
-		CLIPBOARDVIEWERSTATE			m_clipboard_viewer_state;
+		//CLIPBOARDVIEWERSTATE			m_clipboard_viewer_state;
 	public:
 		//======================================================================================================
 		//								Ctors
@@ -74,7 +74,7 @@ namespace pu1ssoft
 		/*
 		Return clipboard viewer state
 		*/
-		CLIPBOARDVIEWERSTATE __stdcall get_state(void) noexcept;
+		//CLIPBOARDVIEWERSTATE __stdcall get_state(void) noexcept;
 	protected:
 		/*
 		Standart Window Procedure

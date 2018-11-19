@@ -5,8 +5,8 @@ pu1ssoft::clipboard_viewer::clipboard_viewer()
 	:
 	p_window_info(new WIN32_WINDOW_INFO()),
 	p_clipboard_owner_info(new WIN32_CLIPBOARD_OWNER_INFO()),
-	p_last_system_error(new WIN32_LAST_SYSTEM_ERROR()),
-	m_clipboard_viewer_state(CLIPBOARDVIEWERSTATE::Disabled)
+	p_last_system_error(new WIN32_LAST_SYSTEM_ERROR())//,
+	//m_clipboard_viewer_state(CLIPBOARDVIEWERSTATE::Disabled)
 {
 	pWndProc = WindowProc;
 }
@@ -90,10 +90,10 @@ std::string __stdcall pu1ssoft::clipboard_viewer::get_last_system_error(void) no
 	return str;
 }
 
-CLIPBOARDVIEWERSTATE __stdcall pu1ssoft::clipboard_viewer::get_state(void) noexcept
-{
-	return m_clipboard_viewer_state;
-}
+//CLIPBOARDVIEWERSTATE __stdcall pu1ssoft::clipboard_viewer::get_state(void) noexcept
+//{
+//	return m_clipboard_viewer_state;
+//}
 
 LRESULT pu1ssoft::clipboard_viewer::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
