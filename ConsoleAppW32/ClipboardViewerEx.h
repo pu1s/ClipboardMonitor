@@ -17,41 +17,46 @@ using namespace std;
 #pragma comment(lib, "user32.lib")
 
 #define LAST_ERROR_PTR long long* 
-#define WINDOW_STATE CLIPBOARDVIEWERWINDOWSTATE
-#define VIEWER_STATE CLIPBOARDVIEWERSTATE
-
+#define WINDOW_STATE	CLIPBOARDVIEWERWINDOWSTATE
+#define VIEWER_STATE	CLIPBOARDVIEWERSTATE
+#define WINDOW_DATA		CLIPBOARDVIEWERWINDOWINFOTAG
 
 
 namespace stdx
 {
+	typedef
+		struct ClipboardViewerWindowInfoTag
+	{
+		
+	}CLIPBOARDVIEWERWINDOWINFOTAG;
 
 	typedef
-		class ClipboardViewerEx
+		class ClipboardViewerWindowEx
 	{
 	private:
-		static HINSTANCE		_hInstance;
-		HWND					_hWnd;
-		HWND					_hWndNextClipboardViewer;
-		WNDCLASS				_wc;
-		LAST_ERROR_PTR			_pLastError;
-		VIEWER_STATE			_mVState;
-		WINDOW_STATE			_mWndState; //TODO: начать отсюда
+		 HINSTANCE				_hInstance;
+		 HWND					_hWnd;
+		 HWND					_hWndNextClipboardViewer;
+		 WNDCLASS				_wc;
+		 DWORD					_pLastError;
+		 VIEWER_STATE			_mVState;
+		 WINDOW_STATE			_mWndState; //TODO: начать отсюда
 
+		
+		/*
+		 Новые окно просмоторщика буфера обмена
+		*/
+		ClipboardViewerWindowEx();
 	public:
+		~ClipboardViewerWindowEx();
 		/*
-		 Новый просмоторщик буфера обмена
+		Новые окно просмоторщика буфера обмена
 		*/
-		ClipboardViewerEx();
-
-		~ClipboardViewerEx();
-		/*
-		Новый просмоторщик буфера обмена
-		*/
-		ClipboardViewerEx(
+		ClipboardViewerWindowEx(
 			HINSTANCE hInstance,	// Описатель процесса
 			LPCWSTR window_name,	// Название окна и класса
 			LPCWSTR window_title,	// Надпись заголовка окна
-			WNDPROC wndproc			// Указатель на оконную процедуру, если NULL, то используется встроенная оконная процедура
+			WNDPROC wndproc			// Указатель на оконную процедуру
 		);
 
 		HWND GetClipboardViewerWindowHandle(void) noexcept;
@@ -62,11 +67,14 @@ namespace stdx
 			bool is_visible
 		) noexcept;
 
-		long long GetClipboardViewerLastError(void) noexcept;
+		DWORD GetClipboardViewerLastError(void) noexcept;
 
 		bool DestroyClipboardViewerWindow(void) noexcept;
+		
+
+		
 	protected:
-		static LRESULT __stdcall StdWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+		LRESULT __stdcall StdWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	}*CLIPBOARDVIEWEREX_PTR;
 }

@@ -1,31 +1,28 @@
 #include "ClipboardViewerEx.h"
 
-stdx::ClipboardViewerEx::ClipboardViewerEx()
-	: _hWnd(nullptr), _hWndNextClipboardViewer(nullptr), _pLastError(nullptr), _mVState(stdx::CLIPBOARDVIEWERSTATE::Unknown)
+
+stdx::ClipboardViewerWindowEx::ClipboardViewerWindowEx()
+	: _hWnd(nullptr), _hWndNextClipboardViewer(nullptr), _mVState(stdx::CLIPBOARDVIEWERSTATE::Unknown)
 {
-	_pLastError = new long long(0);
+	
 }
 
-stdx::ClipboardViewerEx::~ClipboardViewerEx()
+stdx::ClipboardViewerWindowEx::~ClipboardViewerWindowEx()
 {
-	_hWnd = nullptr;
-	_hWndNextClipboardViewer = nullptr;
-	delete _pLastError;
+	
+	
 }
 
-stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_name, LPCWSTR window_title, WNDPROC wndproc)
-	: ClipboardViewerEx()
+stdx::ClipboardViewerWindowEx::ClipboardViewerWindowEx(HINSTANCE hInstance, LPCWSTR window_name, LPCWSTR window_title, WNDPROC wndproc)
+	: ClipboardViewerWindowEx()
 {
 	LPCWSTR szWinName = (LPCWSTR)window_name;				// Произвольное имя класса главного окна
 	LPCWSTR szTitle = (LPCWSTR)window_title;				// Произвольный заголовок окна
-																// Структура msg типа MSG для получения сообщений Windows
-																// Структура wc типа WNDCLASS для задания характеристик окна
-
+															// Структура msg типа MSG для получения сообщений Windows
+															// Структура wc типа WNDCLASS для задания характеристик окна
+	
 	/*Заполнение структуры wc типа WNDCLASS для описания класса главного окна*/
-	if (!wndproc)
-	{
-		wndproc = &StdWndProc;
-	}
+	
 	ZeroMemory(&_wc, sizeof(_wc));								// Обнуление всех членов структуры wc
 	_wc.hInstance = hInstance;                                   // Дескриптор приложения
 	_wc.lpszClassName = (LPCWSTR)szWinName;                      // Имя класса окна
@@ -60,13 +57,11 @@ stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_n
 		NULL);
 	if (!_hWnd)
 	{
-		*_pLastError = GetLastError(); 
-
+		_pLastError = GetLastError(); 
 		return;
 	}
 	else
 	{
-
 		return;
 	}
 	
@@ -74,7 +69,7 @@ stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_n
 
 
 
-bool stdx::ClipboardViewerEx::DestroyClipboardViewerWindow(void) noexcept
+bool stdx::ClipboardViewerWindowEx::DestroyClipboardViewerWindow(void) noexcept
 {
 	if (DestroyWindow(_hWnd))
 	{
@@ -86,27 +81,32 @@ bool stdx::ClipboardViewerEx::DestroyClipboardViewerWindow(void) noexcept
 	}
 }
 
-LRESULT __stdcall stdx::ClipboardViewerEx::StdWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT __stdcall stdx::ClipboardViewerWindowEx::StdWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_CREATE:
+
+		break;
 	default:
 		return DefWindowProc(hwnd, message, wParam, lParam);
 		break;
 	}
+	return 0;
 }
 
-HWND stdx::ClipboardViewerEx::GetClipboardViewerWindowHandle(void) noexcept
+
+HWND stdx::ClipboardViewerWindowEx::GetClipboardViewerWindowHandle(void) noexcept
 {
 	return _hWnd;
 }
 
-HWND stdx::ClipboardViewerEx::GetNextClipboardViewerWindowHandle(void) noexcept
+HWND stdx::ClipboardViewerWindowEx::GetNextClipboardViewerWindowHandle(void) noexcept
 {
 	return _hWndNextClipboardViewer;
 }
 
-bool stdx::ClipboardViewerEx::ShowClipboardViewerWindow(bool is_visible) noexcept
+bool stdx::ClipboardViewerWindowEx::ShowClipboardViewerWindow(bool is_visible) noexcept
 {
 	if (is_visible)
 	{
@@ -132,11 +132,9 @@ bool stdx::ClipboardViewerEx::ShowClipboardViewerWindow(bool is_visible) noexcep
 	}
 }
 
-long long stdx::ClipboardViewerEx::GetClipboardViewerLastError(void) noexcept
+DWORD stdx::ClipboardViewerWindowEx::GetClipboardViewerLastError(void) noexcept
 {
-	return *_pLastError;
+	return _pLastError;
 }
-
-
 
 
