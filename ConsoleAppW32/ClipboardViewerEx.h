@@ -48,10 +48,10 @@ namespace stdx
 		Новый просмоторщик буфера обмена
 		*/
 		ClipboardViewerEx(
-			HINSTANCE hInstance,
-			LPCWSTR window_name,
-			LPCWSTR window_title,
-			WNDPROC wndproc
+			HINSTANCE hInstance,	// Описатель процесса
+			LPCWSTR window_name,	// Название окна и класса
+			LPCWSTR window_title,	// Надпись заголовка окна
+			WNDPROC wndproc			// Указатель на оконную процедуру, если NULL, то используется встроенная оконная процедура
 		);
 
 		HWND GetClipboardViewerWindowHandle(void) noexcept;
