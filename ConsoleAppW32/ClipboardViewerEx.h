@@ -17,7 +17,7 @@ using namespace std;
 
 namespace stdx
 {
-
+	typedef
 	class ClipboardViewerEx
 	{
 	private:
@@ -40,7 +40,7 @@ namespace stdx
 		HWND GetWindowViewerHandle(void) noexcept;
 
 		bool ShowWindowViewer(bool is_visible) noexcept;
-	};
+	}*CLIPBOARDVIEWEREX_PTR;
 }
 
 
