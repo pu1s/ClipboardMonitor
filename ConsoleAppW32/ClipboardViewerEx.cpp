@@ -1,6 +1,6 @@
 #include "ClipboardViewerEx.h"
 
-pu1ssoft::ClipboardViewerEx::ClipboardViewerEx()
+stdx::ClipboardViewerEx::ClipboardViewerEx()
 {
 }
 
@@ -8,7 +8,7 @@ stdx::ClipboardViewerEx::~ClipboardViewerEx()
 {
 }
 
-void stdx::ClipboardViewerEx::CreateWindowViewer(HINSTANCE hInstance, wstring & window_name, wstring & window_title,  bool is_visible, WNDPROC wndproc, HWND & handle) noexcept
+void stdx::ClipboardViewerEx::CreateWindowViewer(HINSTANCE hInstance, wstring & window_name, wstring & window_title, WNDPROC wndproc, HWND & handle) noexcept
 {
 	LPCWSTR szWinName = (LPCWSTR)window_name.c_str();				// Произвольное имя класса главного окна
 	LPCWSTR szTitle = (LPCWSTR)window_title.c_str();				// Произвольный заголовок окна
@@ -48,6 +48,11 @@ void stdx::ClipboardViewerEx::CreateWindowViewer(HINSTANCE hInstance, wstring & 
 		hInstance,                                              // Дескриптор приложения
 		NULL);
 	handle = hwnd;
+}
+
+bool stdx::ClipboardViewerEx::DestroyWindowViewer(void) noexcept
+{
+	return false;
 }
 
 

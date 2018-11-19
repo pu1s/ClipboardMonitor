@@ -13,7 +13,7 @@
 
 #pragma comment(lib, "user32.lib")
 using namespace std;
-using namespace stdx;
+
 
 namespace stdx
 {
@@ -31,7 +31,6 @@ namespace stdx
 			HINSTANCE hInstance,
 			wstring& window_name,
 			wstring& window_title,
-			bool is_visible, 
 			WNDPROC wndproc,
 			HWND& handle
 		) noexcept;
