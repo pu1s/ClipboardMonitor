@@ -65,12 +65,18 @@ int __stdcall pu1ssoft::clipboard_viewer::WinMain(HINSTANCE hInstance, HINSTANCE
 		hInstance,                                              // Дескриптор приложения
 		NULL);                                                  // Без дополнительных аргументов
 	ShowWindow(hwnd, SW_SHOWNORMAL);							// Вызов функции API
+	UpdateWindow(hwnd);
 																// для отображения окна 
 	/*Организация цикла обнаружения сообщений*/
-	while (GetMessage(&msg, NULL, 0, 0))						// Если есть сообщение, передать его
-																// нашему приложению
-		DispatchMessage(&msg);									// и вызвать оконную функцию WindowFunc 
+	msg = { 0 };
+	while (GetMessage(&msg, NULL, 0, 0))
+	{// Если есть сообщение, передать его
+		TranslateMessage(&msg);														// нашему приложению
+		DispatchMessage(&msg);
+	}// и вызвать оконную функцию WindowFunc 
+	std::wcout << L"Exit of main func" << std::endl;
 	return 0;
+	
 }
 
 std::string __stdcall pu1ssoft::clipboard_viewer::get_last_system_error(void) noexcept

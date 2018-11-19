@@ -23,17 +23,23 @@ namespace pu1ssoft
 	private:
 		HINSTANCE			_hInstance;
 		HWND				_hWnd;
+		//
+		WNDCLASS			_wc;
 		bool				_isWindowVisible;
-
-		int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst,
-			LPSTR lpszArgs, int nWinMode);
+	public:
+		int  WINAPI WinMain(
+			HINSTANCE hInstance, 
+			HINSTANCE hPrevInst,
+			LPSTR lpszArgs, 
+			int nWinMode
+		);
 
 		static LRESULT WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 	public:
 		ClipboardViewerEx();
 		~ClipboardViewerEx();
-
-		bool __stdcall Create(void) noexcept;
+		HWND GetClipboardViewerHandle(void) noexcept;
+		void __stdcall Create(void) noexcept;
 		
 	}CLIPBOARDVIEWEREX, *CLIPBOARDVIEWEREX_PTR;
 }
