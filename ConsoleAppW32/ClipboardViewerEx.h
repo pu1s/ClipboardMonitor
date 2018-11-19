@@ -13,20 +13,30 @@
 
 #pragma comment(lib, "user32.lib")
 using namespace std;
-using namespace pu1ssoft;
+using namespace stdx;
 
-namespace pu1ssoft
+namespace stdx
 {
 
 	class ClipboardViewerEx
 	{
 	private:
 		static HINSTANCE	_hInstance;
-		HWND		_hWnd;
+		HWND				_hWnd;
+		
 	public:
 		ClipboardViewerEx();
 		~ClipboardViewerEx();
-		
+		void CreateWindowViewer(
+			HINSTANCE hInstance,
+			wstring& window_name,
+			wstring& window_title,
+			bool is_visible, 
+			WNDPROC wndproc,
+			HWND& handle
+		) noexcept;
+
+		bool DestroyWindowViewer(void) noexcept;
 	};
 }
 
