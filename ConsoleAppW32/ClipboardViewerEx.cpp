@@ -1,7 +1,7 @@
 #include "ClipboardViewerEx.h"
 
 stdx::ClipboardViewerEx::ClipboardViewerEx()
-	: _hWnd(nullptr), _hWndNextClipboardViewer(nullptr), _pLastError(nullptr), _mState(stdx::CLIPBOARDVIEWERSTATE::Unknown)
+	: _hWnd(nullptr), _hWndNextClipboardViewer(nullptr), _pLastError(nullptr), _mVState(stdx::CLIPBOARDVIEWERSTATE::Unknown)
 {
 	_pLastError = new long long(0);
 }
@@ -22,6 +22,10 @@ stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_n
 																// Структура wc типа WNDCLASS для задания характеристик окна
 
 	/*Заполнение структуры wc типа WNDCLASS для описания класса главного окна*/
+	if (!wndproc)
+	{
+		wndproc = &StdWndProc;
+	}
 	ZeroMemory(&_wc, sizeof(_wc));								// Обнуление всех членов структуры wc
 	_wc.hInstance = hInstance;                                   // Дескриптор приложения
 	_wc.lpszClassName = (LPCWSTR)szWinName;                      // Имя класса окна
@@ -79,6 +83,16 @@ bool stdx::ClipboardViewerEx::DestroyClipboardViewerWindow(void) noexcept
 	else
 	{
 		return false;
+	}
+}
+
+LRESULT __stdcall stdx::ClipboardViewerEx::StdWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	default:
+		return DefWindowProc(hwnd, message, wParam, lParam);
+		break;
 	}
 }
 

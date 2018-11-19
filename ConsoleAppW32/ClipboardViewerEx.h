@@ -12,18 +12,21 @@
 #include "ClipboardViewerInfo.h"
 #include "ClipboardViewerWindowState.h"
 
+using namespace std;
+
 #pragma comment(lib, "user32.lib")
 
 #define LAST_ERROR_PTR long long* 
 #define WINDOW_STATE CLIPBOARDVIEWERWINDOWSTATE
 #define VIEWER_STATE CLIPBOARDVIEWERSTATE
-using namespace std;
+
 
 
 namespace stdx
 {
+
 	typedef
-	class ClipboardViewerEx
+		class ClipboardViewerEx
 	{
 	private:
 		static HINSTANCE		_hInstance;
@@ -31,16 +34,25 @@ namespace stdx
 		HWND					_hWndNextClipboardViewer;
 		WNDCLASS				_wc;
 		LAST_ERROR_PTR			_pLastError;
-		VIEWER_STATE			_mState;
-		WINDOW_STATE			_mWndState;
+		VIEWER_STATE			_mVState;
+		WINDOW_STATE			_mWndState; //TODO: начать отсюда
+
 	public:
+		/*
+		 Новый просмоторщик буфера обмена
+		*/
 		ClipboardViewerEx();
+
 		~ClipboardViewerEx();
+		/*
+		Новый просмоторщик буфера обмена
+		*/
 		ClipboardViewerEx(
 			HINSTANCE hInstance,
 			LPCWSTR window_name,
 			LPCWSTR window_title,
-			WNDPROC wndproc);
+			WNDPROC wndproc
+		);
 
 		HWND GetClipboardViewerWindowHandle(void) noexcept;
 
@@ -53,6 +65,8 @@ namespace stdx
 		long long GetClipboardViewerLastError(void) noexcept;
 
 		bool DestroyClipboardViewerWindow(void) noexcept;
+	protected:
+		static LRESULT __stdcall StdWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	}*CLIPBOARDVIEWEREX_PTR;
 }
