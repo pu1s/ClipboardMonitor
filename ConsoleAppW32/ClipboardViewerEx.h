@@ -23,19 +23,23 @@ namespace stdx
 	private:
 		static HINSTANCE	_hInstance;
 		HWND				_hWnd;
-		
+		WNDCLASS			_wc;
 	public:
 		ClipboardViewerEx();
 		~ClipboardViewerEx();
 		void CreateWindowViewer(
 			HINSTANCE hInstance,
-			wstring& window_name,
-			wstring& window_title,
+			LPCWSTR window_name,
+			LPCWSTR window_title,
 			WNDPROC wndproc,
 			HWND& handle
 		) noexcept;
 
 		bool DestroyWindowViewer(void) noexcept;
+
+		HWND GetWindowViewerHandle(void) noexcept;
+
+		bool ShowWindowViewer(bool is_visible) noexcept;
 	};
 }
 
