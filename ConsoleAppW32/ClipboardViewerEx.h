@@ -27,6 +27,11 @@ namespace stdx
 	public:
 		ClipboardViewerEx();
 		~ClipboardViewerEx();
+		ClipboardViewerEx(
+			HINSTANCE hInstance,
+			LPCWSTR window_name,
+			LPCWSTR window_title,
+			WNDPROC wndproc);
 		void CreateWindowViewer(
 			HINSTANCE hInstance,
 			LPCWSTR window_name,
