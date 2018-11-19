@@ -156,6 +156,7 @@
     <ClInclude Include="ClipboardViewerInfo.h" />
     <ClInclude Include="ClipboardViewerState.h" />
     <ClInclude Include="ClipboardViewerEx.h" />
+    <ClInclude Include="ConsoleAppW32.h" />
     <ClInclude Include="D3DWindowScope.h" />
     <ClInclude Include="ClipboardViewerGlobal.h" />
     <ClInclude Include="native_clipboard_window_viewer.h" />

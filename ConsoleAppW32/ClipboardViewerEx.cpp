@@ -1,17 +1,28 @@
 #include "ClipboardViewerEx.h"
 
-int __stdcall pu1ssoft::ClipboardViewerEx::WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpszArgs, int nWinMode)
+stdx::ClipboardViewerEx::ClipboardViewerEx()
+	: _hWnd(nullptr)
 {
-	LPCWSTR szWinName = L"ClipboardViewerWindow";				// Произвольное имя класса главного окна
-	LPCWSTR szTitle = L"Clipboard Viewer";						// Произвольный заголовок окна
-	MSG msg;													// Структура msg типа MSG для получения сообщений Windows
-													// Структура wc типа WNDCLASS для задания характеристик окна
+}
+
+stdx::ClipboardViewerEx::~ClipboardViewerEx()
+{
+	_hWnd = nullptr;
+}
+
+stdx::ClipboardViewerEx::ClipboardViewerEx(HINSTANCE hInstance, LPCWSTR window_name, LPCWSTR window_title, WNDPROC wndproc)
+	: ClipboardViewerEx()
+{
+	LPCWSTR szWinName = (LPCWSTR)window_name;				// Произвольное имя класса главного окна
+	LPCWSTR szTitle = (LPCWSTR)window_title;				// Произвольный заголовок окна
+																// Структура msg типа MSG для получения сообщений Windows
+																// Структура wc типа WNDCLASS для задания характеристик окна
 
 	/*Заполнение структуры wc типа WNDCLASS для описания класса главного окна*/
 	ZeroMemory(&_wc, sizeof(_wc));								// Обнуление всех членов структуры wc
 	_wc.hInstance = hInstance;                                   // Дескриптор приложения
 	_wc.lpszClassName = (LPCWSTR)szWinName;                      // Имя класса окна
-	_wc.lpfnWndProc = this->WindowProc;								// Определение оконной функции 
+	_wc.lpfnWndProc = wndproc;								// Определение оконной функции 
 	_wc.style = 0;                                               // Стиль по умолчанию
 	_wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);					// Стандартная пиктограмма
 	_wc.hCursor = LoadCursor(NULL, IDC_ARROW);					// Стандартный курсор мыши
@@ -24,10 +35,10 @@ int __stdcall pu1ssoft::ClipboardViewerEx::WinMain(HINSTANCE hInstance, HINSTANC
 	if (!RegisterClass(&_wc))                                    // Если класс окна не регистрируется
 	{															// выводим сообщение и заканчиваем выполнение программы
 		MessageBox(NULL, L"Окно нерегестрируется", L"Ошибка", MB_OK);
-		return 1;
+		return;
 	}                                                           // возвращаем код ошибки
 	/*Создание главного окна и отображение его на мониторе*/
-	HWND _hWnd = CreateWindow(									// Вызов функции API для создания ок-на
+	_hWnd = CreateWindow(									// Вызов функции API для создания ок-на
 		(LPCWSTR)szWinName,                                     // имя класса главного окна
 		(LPCWSTR)szTitle,                                       // заголовок окна
 		WS_OVERLAPPEDWINDOW,									// Стиль окна 
@@ -38,70 +49,55 @@ int __stdcall pu1ssoft::ClipboardViewerEx::WinMain(HINSTANCE hInstance, HINSTANC
 		HWND_DESKTOP,											// Без родительского окна
 		NULL,                                                   // Без меню
 		hInstance,                                              // Дескриптор приложения
-		NULL);                                                  // Без дополнительных аргументов
-	//ShowWindow(_hWnd, SW_SHOWNORMAL);							// Вызов функции API
-	//ShowWindow(_hWnd, SW_HIDE);
-	//CloseWindow(_hWnd);
-	// для отображения окна 
-	/*Организация цикла обнаружения сообщений*/
-	if (_hWnd)
+		NULL);
+	
+}
+
+
+
+bool stdx::ClipboardViewerEx::DestroyWindowViewer(void) noexcept
+{
+	if (DestroyWindow(_hWnd))
 	{
-		while (GetMessage(&msg, NULL, 0, 0))						// Если есть сообщение, передать его
-																	// нашему приложению
-			DispatchMessage(&msg);									// и вызвать оконную функцию WindowFunc 
-		return 0;
+		return true;
 	}
 	else
 	{
-		return 1;
+		return false;
 	}
 }
 
-LRESULT pu1ssoft::ClipboardViewerEx::WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-
-	switch (message)											// выбор по значению сообщения (message)
-	{
-	case WM_CREATE:
-		std::wcout << "Window Created!!!" << std::endl;
-		break;
-	case WM_NCACTIVATE:
-		std::wcout << "Window NCAaaaa!!!" << std::endl;
-		break;
-	case WM_DESTROY:											//При завершении приложения пользователем
-
-		PostQuitMessage(0);										//вызвать функцию API завершения приложения
-		break;
-	case WM_CHANGECBCHAIN:
-		/*if ((HWND)wParam == (HWND)cv->h_nextClipboardViewer)
-			cv->h_nextClipboardViewer = (HWND)lParam;*/
-		break;
-	default:													// Все сообщения, не обрабатываемые данной функцией,
-																// направляются на обработку по умолчанию 
-		return DefWindowProc(hwnd, message, wParam, lParam);
-	}                                                           //Конец оператора switch
-	return 0;
-}
-
-pu1ssoft::ClipboardViewerEx::ClipboardViewerEx()
-{
-	constexpr HWND _hWnd = nullptr;
-}
-
-pu1ssoft::ClipboardViewerEx::~ClipboardViewerEx()
-{
-}
-
-HWND pu1ssoft::ClipboardViewerEx::GetClipboardViewerHandle(void) noexcept
+HWND stdx::ClipboardViewerEx::GetWindowViewerHandle(void) noexcept
 {
 	return _hWnd;
 }
 
-void __stdcall pu1ssoft::ClipboardViewerEx::Create(void) noexcept
+bool stdx::ClipboardViewerEx::ShowWindowViewer(bool is_visible) noexcept
 {
-	_hInstance = (HINSTANCE)GetModuleHandle(NULL);
-	if(!WinMain(_hInstance, NULL, NULL, NULL))
-		return;
+	if (is_visible)
+	{
+		if (ShowWindow(_hWnd, SW_NORMAL))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (ShowWindow(_hWnd, SW_HIDE))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
+
+
 
 
